@@ -1,4 +1,4 @@
-class Triangle {
+export class Triangle {
   constructor(a, b) {
     // validates properties
     if (!Number.isFinite(a) || a <= 0) throw new Error(`Invalid 'a': ${a}`)
@@ -14,6 +14,10 @@ class Triangle {
 
   getHypotenuse() {
     return Math.sqrt(this.a ** 2 + this.b ** 2)
+  }
+
+  describe() {
+    console.log('I AM THE TRIANGLE!')
   }
 }
 

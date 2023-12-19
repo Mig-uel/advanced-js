@@ -19,3 +19,5 @@
 - constructor method is optional
 - constructor method is where you put the properties that you want each instance to have
 - constructors return undefined
+- to inherit from another class, use the extends keyword
+- super() calls the constructor of the parent class
