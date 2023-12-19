@@ -21,3 +21,6 @@
 - constructors return undefined
 - to inherit from another class, use the extends keyword
 - super() calls the constructor of the parent class
+- static properties and methods are called on the class itself, not on instances of the class
+- static properties and methods are useful for utility functions
+- static properties and methods are defined with the static keyword
