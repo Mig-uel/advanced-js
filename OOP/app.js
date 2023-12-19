@@ -1,4 +1,4 @@
-import { BankAccount } from './BankAccount.js'
+import { BankAccount } from './classes/BankAccount.js'
 
 const pet = {
   species: 'Dog',
