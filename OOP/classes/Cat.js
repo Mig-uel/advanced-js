@@ -5,4 +5,8 @@ export class Cat {
   }
 
   static genusSpecies = 'felis catus'
+
+  static meow() {
+    return 'MEOW MEOW MEOW'
+  }
 }
