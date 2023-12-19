@@ -15,3 +15,7 @@
 - UpperCamelCase for class names
 - typeof instance === 'object'
 - instanceof returns true if an object is an instance of a class
+- constructor method is called when a new instance is created
+- constructor method is optional
+- constructor method is where you put the properties that you want each instance to have
+- constructors return undefined
