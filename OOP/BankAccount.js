@@ -7,15 +7,16 @@ export class BankAccount {
 
   deposit(amount) {
     this.balance += amount
-    return `$${amount} deposited. Your new balance is ${this.balance}`
+    console.log(`$${amount} deposited. Your new balance is $${this.balance}`)
   }
 
   withdraw(amount) {
-    if (amount > balance) {
-      return `Insufficient Funds!`
+    if (amount > this.balance) {
+      console.log(`Insufficient Funds!`)
+      return
     }
 
     this.balance -= amount
-    return `You withdrew $${amount}. Your new balance is ${this.balance}`
+    console.log(`You withdrew $${amount}. Your new balance is $${this.balance}`)
   }
 }

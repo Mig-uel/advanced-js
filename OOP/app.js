@@ -11,5 +11,7 @@ pet.bark = function () {
 }
 
 // BankAccount Class Practice
-const myBank = new BankAccount('123XYZ', 'Miguel Castillo')
+const myBank = new BankAccount('123XYZ', 'Miguel Castillo', 10000)
 console.log(myBank.balance)
+
+myBank.withdraw(50)
