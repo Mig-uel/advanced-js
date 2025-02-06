@@ -99,3 +99,25 @@ function handleFile1(err, data) {
 
 Each function needs to know what to do next; this makes writing independent functions difficult.
 It can be particularly hard to handle errors in this pattern.
+
+# Promises
+
+Promises provide an alternate way to think about asynchronicity.
+A promise is a one-time guarantee that a value will be available in the future.
+
+```js
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+const url = `${BASE_URL}/1`
+
+fetch(url)
+```
+
+The `fetch` function returns a promise. This promise will resolve when the HTTP request is complete.
+
+- Promises in JavaScript are objects that represent the eventual completion (or failure) of an asynchronous operation.
+- They are native to the language as of ES6.
+- A promise can be in one of three states:
+  - `Pending`: Initial state, neither fulfilled nor rejected. It doesn't have a value yet.
+  - `Fulfilled`: Operation completed successfully. It has successfully obtained a value.
+  - `Rejected`: Operation failed. It failed to obtain a value for some reason.
+  - The only way to access the resolved or rejected value is to chain a method onto the end of the promise (or `await` it).
