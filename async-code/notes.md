@@ -121,3 +121,20 @@ The `fetch` function returns a promise. This promise will resolve when the HTTP 
   - `Fulfilled`: Operation completed successfully. It has successfully obtained a value.
   - `Rejected`: Operation failed. It failed to obtain a value for some reason.
   - The only way to access the resolved or rejected value is to chain a method onto the end of the promise (or `await` it).
+
+## `.then` and `.catch`
+
+- Promises provide a `.then` and `.catch` method to handle the result of the promise. Both of these accept a callback function.
+- The callback passed to the `.then` method will run if the promise is resolved, and has access to the promise's resolved value.
+
+```js
+fetch(url).then((res) => res.json())
+```
+
+- The callback passed to the `.catch` method will run if the promise is rejected, and typically has access to the error that caused the rejection.
+
+```js
+fetch(url)
+  .then((res) => res.json())
+  .catch((err) => console.error(err))
+```
