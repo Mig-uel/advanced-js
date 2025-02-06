@@ -138,3 +138,68 @@ fetch(url)
   .then((res) => res.json())
   .catch((err) => console.error(err))
 ```
+
+## Chaining Promises
+
+```js
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+
+// make request to pokemon/1
+fetch(`${BASE_URL}/1`)
+  .then((res1) => {
+    console.log('RESPONSE 1', res1)
+
+    // then make request to pokemon/2
+    fetch(`${BASE_URL}/2`)
+      .then((res2) => {
+        console.log('RESPONSE 2', res2)
+
+        // then make request to pokemon/3
+        fetch(`${BASE_URL}/3`)
+          .then((res3) => {
+            console.log('RESPONSE 3', res3)
+
+            // then make request to pokemon/4
+            fetch(`${BASE_URL}/4`)
+              .then((res4) => {
+                console.log('RESPONSE 4', res4)
+              })
+              .catch((err) => console.error(err))
+          })
+          .catch((err) => console.error(err))
+      })
+      .catch((err) => console.error(err))
+  })
+  .catch((err) => console.error(err))
+```
+
+This is a better pattern than callback hell, but it's still not ideal.
+
+- When calling `.then` on a promise, it can return a _new_ promise in a callback.
+  - Can chain asynchronous operations/promises together without nesting and with `.then` calls
+- We only need one `.catch` at the end to handle any errors in the chain — don't have to catch every promise.
+
+```js
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+
+fetch(`${BASE_URL}/1`)
+  .then((res1) => {
+    console.log('RESPONSE 1', res1)
+
+    return fetch(`${BASE_URL}/2`)
+  })
+  .then((res2) => {
+    console.log('RESPONSE 2', res2)
+
+    return fetch(`${BASE_URL}/3`)
+  })
+  .then((res3) => {
+    console.log('RESPONSE 3', res3)
+
+    return fetch(`${BASE_URL}/4`)
+  })
+  .then((res4) => {
+    console.log('RESPONSE 4', res4)
+  })
+  .catch((err) => console.error(err))
+```
