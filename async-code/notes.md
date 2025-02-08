@@ -404,3 +404,34 @@ try {
   console.error(err)
 }
 ```
+
+## Async Patterns: Many Calls, in Sequence (cont.)
+
+- `Promise.allSettled` accepts an array of promises and returns a single promise that resolves when all of the promises in the array have settled (resolved or rejected).
+- The new promise will resolve with an array of objects that each describe the outcome of each promise in the array.
+
+```js
+async function allSettledExample() {
+  const BASE_URL = 'https://api.github.com/users'
+
+  const elliePromise = fetch(`${BASE_URL}/ellie`)
+  const joelPromise = fetch(`${BASE_URL}/joel`)
+  const badPromise = fetch(`https://this-url-does-not-exist.com`)
+  const coltPromise = fetch(`${BASE_URL}/colt`)
+  const anotherBadPromise = fetch(`https://this-url-does-not-exist-either.com`)
+
+  const results = await Promise.allSettled([
+    elliePromise,
+    joelPromise,
+    badPromise,
+    coltPromise,
+    anotherBadPromise,
+  ])
+
+  console.log(results)
+}
+```
+
+- `Promise.allSettled` returns an array of objects, each with a `status` property that is either `'fulfilled'` or `'rejected'`.
+- If the promise was fulfilled, the object will have a `value` property with the resolved value.
+- If the promise was rejected, the object will have a `reason` property with the rejection reason.
