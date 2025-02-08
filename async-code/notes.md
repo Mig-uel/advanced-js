@@ -257,3 +257,27 @@ async function fetchPokemon() {
 ```
 
 (The first `await` will pause the function until the promise resolves. The function will then continue executing. The `await` expression evaluates to the resolved value of the promise.)
+
+# More on Async/Await
+
+We can await as many promises as we want in an `async` function.
+
+```js
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+
+async function fetchFourPokemon() {
+  const pokemon1 = await fetch(`${BASE_URL}/1`)
+  console.log(pokemon1)
+
+  const pokemon2 = await fetch(`${BASE_URL}/2`)
+  console.log(pokemon2)
+
+  const pokemon3 = await fetch(`${BASE_URL}/3`)
+  console.log(pokemon3)
+
+  const pokemon4 = await fetch(`${BASE_URL}/4`)
+  console.log(pokemon4)
+}
+```
+
+- This is all promise oriented, but it looks synchronous.
