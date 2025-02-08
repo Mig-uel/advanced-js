@@ -374,3 +374,33 @@ async function fetchThreePokemon() {
   const results = [pokemon1, pokemon2, pokemon3]
 }
 ```
+
+## Async Patterns: Many Calls, in Sequence (cont.)
+
+- `Promise.all` accepts an array of promises and returns a single promise that resolves when all of the promises in the array have resolved.
+- The new promise will resolve when every promise in the array has resolved, and will be rejected if any of the promises in the array are rejected.
+
+```js
+const fetches = [fetch('url1'), fetch('url2'), fetch('url3'), fetch('url4')]
+
+Promise.all(fetches)
+  .then((results) => {
+    console.log(results)
+  })
+  .catch((err) => {
+    console.error(err)
+  })
+```
+
+or
+
+```js
+const fetches = [fetch('url1'), fetch('url2'), fetch('url3'), fetch('url4')]
+
+try {
+  const results = await Promise.all(fetches)
+  console.log(results)
+} catch (err) {
+  console.error(err)
+}
+```
