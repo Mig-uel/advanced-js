@@ -334,3 +334,43 @@ fetch('url3')
     results.push(data)
   })
 ```
+
+## Async Patterns: Many Calls, in Sequence
+
+Need to make several async calls, one-at-a-time, in order.
+
+##### Using `.then`
+
+```js
+const results = []
+
+fetch('url1')
+  .then((res) => res.json())
+  .then((data) => {
+    results.push(data)
+
+    return fetch('url2')
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    results.push(data)
+
+    return fetch('url3')
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    results.push(data)
+  })
+```
+
+##### Using `async`/`await`
+
+```js
+async function fetchThreePokemon() {
+  const pokemon1 = await fetch(`${BASE_URL}/1`)
+  const pokemon2 = await fetch(`${BASE_URL}/2`)
+  const pokemon3 = await fetch(`${BASE_URL}/3`)
+
+  const results = [pokemon1, pokemon2, pokemon3]
+}
+```
