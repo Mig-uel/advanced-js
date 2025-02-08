@@ -452,3 +452,26 @@ Promise.race(fetches)
     console.error(err)
   })
 ```
+
+# Building Our Own Promises
+
+- You can create your own promises using the `Promise` constructor.
+- The `Promise` constructor takes a single argument, a function that takes two arguments: `resolve` and `reject`.
+  - The `resolve` function is used to resolve the promise with a value.
+  - The `reject` function is used to reject the promise with a reason.
+
+```js
+function wait() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve('this is the resolved value')
+    }, 2000)
+  })
+}
+
+async function demo() {
+  console.log('Start')
+  await wait(2000)
+  console.log('End')
+}
+```
