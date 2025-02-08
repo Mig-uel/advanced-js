@@ -475,3 +475,102 @@ async function demo() {
   console.log('End')
 }
 ```
+
+# Promisifying Callbacks
+
+- Sometimes you need to convert a callback-based function into a promise-based function.
+- This is called "promisifying" a function.
+- You can do this manually, but there are libraries that can help.
+
+##### Non-promisifyied function:
+
+```js
+const fs = require('fs')
+
+fs.readFile('file1.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+
+  console.log('FILE 1')
+  console.log(data)
+
+  fs.readFile('file2.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    console.log('FILE 2')
+    console.log(data)
+
+    fs.readFile('file3.txt', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+
+      console.log('FILE 3')
+      console.log(data)
+    })
+  })
+})
+```
+
+##### Promisified function:
+
+```js
+const fs = require('fs')
+
+async function readFile(fileName) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(fileName, 'utf8', (err, data) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(data)
+      }
+    })
+  })
+}
+
+// readFile('file1.txt')
+//   .then((data) => {
+//     console.log('FILE 1')
+//     console.log(data)
+
+//     return readFile('file2.txt')
+//   })
+//   .then((data) => {
+//     console.log('FILE 2')
+//     console.log(data)
+
+//     return readFile('file3.txt')
+//   })
+//   .then((data) => {
+//     console.log('FILE 3')
+//     console.log(data)
+//   })
+//   .catch((err) => {
+//     console.error(err)
+//   })
+
+async function readFiles() {
+  try {
+    const file1 = await readFile('file1.txt')
+    console.log('FILE 1')
+    console.log(file1)
+
+    const file2 = await readFile('file2.txt')
+    console.log('FILE 2')
+    console.log(file2)
+
+    const file3 = await readFile('file3.txt')
+    console.log('FILE 3')
+    console.log(file3)
+  } catch (err) {
+    console.error(err)
+  }
+}
+```
