@@ -435,3 +435,20 @@ async function allSettledExample() {
 - `Promise.allSettled` returns an array of objects, each with a `status` property that is either `'fulfilled'` or `'rejected'`.
 - If the promise was fulfilled, the object will have a `value` property with the resolved value.
 - If the promise was rejected, the object will have a `reason` property with the rejection reason.
+
+## Async Patterns: Many Calls, First One Wins
+
+- `Promise.race` accepts an array of promises and returns a single promise that resolves or rejects as soon as one of the promises in the array resolves or rejects.
+- The new promise will resolve with the value of the first promise to resolve, or reject with the reason of the first promise to reject.
+
+```js
+const fetches = [fetch('url1'), fetch('url2'), fetch('url3'), fetch('url4')]
+
+Promise.race(fetches)
+  .then((winner) => {
+    console.log(winner)
+  })
+  .catch((err) => {
+    console.error(err)
+  })
+```
