@@ -212,3 +212,48 @@ fetch(`${BASE_URL}/1`)
 - Easier to write good functions
   - Each step doesn't have to be tied directly to the next step
   - With promises, `.then` method can just return value for next without having itself know what comes next
+
+# Async/Await
+
+`async` and `await` are language keywords for working with promises.
+
+## `async`
+
+`async` is syntactic sugar for creating promises.
+
+- You can declare any function in JavaScript as `async`.
+- In an `async` function, you write code that looks synchronous, but it's actually asynchronous.
+- An `async` function will always return a promise.
+- If the function returns a value, the promise will be resolved with that value.
+- If the function throws an exception, the promise will be rejected with that exception.
+
+```js
+async function myFunction() {
+  return 'Hello'
+}
+
+myFunction().then((value) => console.log(value))
+```
+
+## `await`
+
+`await` is used to pause the execution of an `async` function until a promise is resolved.
+
+- Inside an `async` function, we can use `await`.
+- `await` can only be used inside an `async` function.
+- `await` will pause the execution of the `async` function until the promise is resolved.
+- Can `await` any promise, not just promises created with `async`.
+- `await` waits for promises to resolve, but it doesn't block the event loop. And it evaluated to its resolved value.
+- It then resumes execution
+- Think of `await` as a pause button that waits for a promise to resolve.
+
+```js
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+
+async function fetchPokemon() {
+  const result = await fetch(`${BASE_URL}/1`)
+  console.log(result)
+}
+```
+
+(The first `await` will pause the function until the promise resolves. The function will then continue executing. The `await` expression evaluates to the resolved value of the promise.)
