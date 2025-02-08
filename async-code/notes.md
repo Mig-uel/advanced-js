@@ -281,3 +281,20 @@ async function fetchFourPokemon() {
 ```
 
 - This is all promise oriented, but it looks synchronous.
+
+## Error Handling
+
+- We can use `try` and `catch` blocks to handle errors in `async` functions.
+- If a promise is rejected, the `await` expression will throw an error.
+- We can catch this error with a `try` and `catch` block.
+
+```js
+async function fetchFakePromise() {
+  try {
+    const res = await fetch('http://fakeurl')
+    console.log(res)
+  } catch (err) {
+    console.error(err)
+  }
+}
+```
