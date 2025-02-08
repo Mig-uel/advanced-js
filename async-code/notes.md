@@ -203,3 +203,12 @@ fetch(`${BASE_URL}/1`)
   })
   .catch((err) => console.error(err))
 ```
+
+## Benefits of Promises Over Callbacks
+
+- Promises are easier to read and write than callbacks.
+- Promises can be chained together, making it easier to handle multiple asynchronous operations.
+- Promises can be used to handle errors in a single place, rather than in each callback.
+- Easier to write good functions
+  - Each step doesn't have to be tied directly to the next step
+  - With promises, `.then` method can just return value for next without having itself know what comes next
