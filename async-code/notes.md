@@ -298,3 +298,39 @@ async function fetchFakePromise() {
   }
 }
 ```
+
+# Async Patterns: Parallel Async Operations
+
+## Comparing Then/Catch and Async/Await
+
+- Under the hood, `async`/`await` is just syntactic sugar for promises. They do the same thing.
+- `async`/`await` is a easier modern way read and write than `.then`/`.catch`.
+  - Code can be written more naturally, like synchronous code.
+- There are a few cases where it's easy to deal with promises directly.
+  - For example, when you need to run multiple promises in parallel.
+
+## Async Patterns: Many Calls, Do Thing On Return & Don't Block
+
+Need to make several async calls, then do something with the results as they come in.
+
+```js
+let results = []
+
+fetch('url1')
+  .then((res) => res.json())
+  .then((data) => {
+    results.push(data)
+  })
+
+fetch('url2')
+  .then((res) => res.json())
+  .then((data) => {
+    results.push(data)
+  })
+
+fetch('url3')
+  .then((res) => res.json())
+  .then((data) => {
+    results.push(data)
+  })
+```
