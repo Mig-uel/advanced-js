@@ -243,3 +243,16 @@ class MyClass {
 
 console.log(MyClass.sharedState) // Output: Initialized
 ```
+
+# Final Thoughts
+
+- The optional chaining operator (?.) allows you to safely access nested properties without causing errors.
+- The nullish coalescing operator (??) provides a way to handle default values for null or undefined variables.
+- Numeric separators enhance the readability of large numeric literals.
+- The Array.prototype.at() method allows you to access elements from the end of an array using negative indices.
+- The String.prototype.replaceAll() method replaces all occurrences of a substring in a string.
+- Logical assignment operators combine logical operators with assignment operators for concise value assignment based on logical conditions.
+- The Promise.any() method returns a Promise that resolves when any of the promises in an iterable have resolved.
+- WeakRefs allow you to create references to objects without preventing them from being garbage collected.
+- Public and private class fields allow you to define instance properties directly within a class definition.
+- Static initialization blocks allow you to run code when a class is defined, useful for setting up shared state or configuration for classes.
