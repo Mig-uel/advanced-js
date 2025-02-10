@@ -157,3 +157,27 @@ if (loggedInUser) {
 // Using logical assignment operators
 loggedInUser &&= { ...loggedInUser, colorPreference: 'blue' }
 ```
+
+# Promise.any()
+
+- The Promise.any() method takes an iterable of Promise objects and returns a single Promise that resolves when any of the promises in the iterable have resolved.
+- If all of the promises are rejected, the Promise.any() method returns a single rejected Promise with an AggregateError that contains an array of rejection values.
+
+```js
+const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+
+Promise.any([
+  fetch(`${BASE_URL}/1`),
+  fetch(`${BASE_URL}/2`),
+  fetch(`${BASE_URL}/3`),
+  fetch(`${BASE_URL}/4`),
+  fetch(`${BASE_URL}/5`),
+  fetch(`${BASE_URL}/6`),
+])
+  .then((res) => {
+    console.log('THIS IS THE FIRST TO FINISH', res)
+  })
+  .catch((err) => {
+    console.error('ALL PROMISES WERE REJECTED', err)
+  })
+```
