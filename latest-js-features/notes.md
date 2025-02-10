@@ -78,3 +78,11 @@ const withSeparators = 1_000_000_000
 
 console.log(withSeparators) // Output: 1000000000
 ```
+
+- Numeric separators can be used with binary, octal, and hexadecimal literals as well.
+
+```js
+const binary = 0b1010_0001_1000_0101
+const octal = 0o7_5_7
+const hex = 0x0a_a0_b0_c0
+```
