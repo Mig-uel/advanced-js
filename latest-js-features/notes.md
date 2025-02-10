@@ -38,3 +38,29 @@ const arr = [1, 2, 3]
 const firstElement = arr?.[0]
 const fourthElement = arr?.[3]
 ```
+
+# Nullish Coalescing Operator
+
+- The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
+- This is a way to handle default values more predictably than using the OR (||) operator, which would return the right-hand side operand if the left-hand side operand is falsy (e.g., 0, '', false).
+
+```js
+const user = {
+  firstName: 'John',
+  age: 0,
+}
+
+const lastName = user?.lastName ?? 'Doe'
+```
+
+- The nullish coalescing operator can be used to provide default values for variables that may be null or undefined.
+
+```js
+const user = {
+  firstName: 'John',
+  lastName: null,
+}
+
+const lastName = user.lastName ?? 'Doe'
+```
+q
