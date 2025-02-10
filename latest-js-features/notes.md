@@ -198,3 +198,48 @@ obj = null
 
 console.log(weakRef.deref()) // Output: undefined
 ```
+
+# Class Fields (public and private)
+
+- Public and private class fields allow you to define instance properties directly within a class definition.
+- Public class fields are defined using the syntax fieldName = value, and private class fields are defined using the syntax #fieldName = value.
+- Public class fields are accessible from outside the class, while private class fields are only accessible from within the class.
+
+```js
+class MyClass {
+  // Public class field
+  publicField = 'public field'
+
+  // Private class field
+  #privateField = '
+
+  getPrivateField() {
+    return this.#privateField
+  }
+}
+
+const instance = new MyClass()
+console.log(instance.publicField) // Output: public field
+console.log(instance.getPrivateField()) // Output: private field
+console.log(instance.#privateField) // Error: privateField is not defined
+```
+
+# Static Initialization Blocks
+
+- Static initialization blocks are a new feature in JavaScript that allow you to run code when a class is defined.
+- Static initialization blocks are defined using the static keyword followed by a block of code enclosed in curly braces.
+- Static initialization blocks are executed when the class is defined, before any instances of the class are created
+- This feature allows you to have a block of code that runs once when the class is defined, useful for setting up shared state or configuration for classes.
+
+```js
+class MyClass {
+  static sharedState
+
+  static {
+    console.log('Static initialization block')
+    this.sharedState = 'Initialized'
+  }
+}
+
+console.log(MyClass.sharedState) // Output: Initialized
+```
