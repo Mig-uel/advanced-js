@@ -181,3 +181,20 @@ Promise.any([
     console.error('ALL PROMISES WERE REJECTED', err)
   })
 ```
+
+# WeakRefs
+
+- WeakRefs are a new type of reference in JavaScript that allow you to create references to objects without preventing them from being garbage collected.
+- WeakRefs are useful for creating caches or other data structures that need to hold references to objects without preventing them from being garbage collected.
+- WeakRefs are created using the WeakRef constructor and can be dereferenced using the deref() method.
+
+```js
+let obj = { name: 'John' }
+const weakRef = new WeakRef(obj)
+
+console.log(weakRef.deref()) // Output: { name: 'John' }
+
+obj = null
+
+console.log(weakRef.deref()) // Output: undefined
+```
