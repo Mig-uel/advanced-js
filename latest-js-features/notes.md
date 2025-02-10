@@ -145,3 +145,15 @@ let y = 'default
 x ??= y
 console.log(x) // Output: default
 ```
+
+```js
+let loggedInUser = { username: 'john_doe' }
+
+// Traditional way to check if the user is logged in and updating the user
+if (loggedInUser) {
+  loggedInUser = { ...loggedInUser, colorPreference: 'blue' }
+}
+
+// Using logical assignment operators
+loggedInUser &&= { ...loggedInUser, colorPreference: 'blue' }
+```
