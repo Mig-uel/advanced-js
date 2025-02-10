@@ -100,3 +100,17 @@ console.log(colors.at(0)) // Output: red
 console.log(colors.at(-1)) // Output: orange
 console.log(colors.at(-2)) // Output: yellow
 ```
+
+# String.prototype.replaceAll()
+
+- The String.prototype.replaceAll() method replaces all occurrences of a specified substring with another substring.
+- The method returns a new string with all occurrences of the specified substring replaced.
+
+```js
+const str =
+  'I really love dogs. My dog is such an amazing pet. She loves to cuddle with me and play. What a great dog. dog. dog. dog.'
+
+const newStr = str.replaceAll('dog', 'cat')
+```
+
+- Regular expressions can also be used with the String.prototype.replaceAll() method.
