@@ -20,3 +20,14 @@ const isApproximatelyEqual = (a, b) => {
 
 console.log(isApproximatelyEqual(0.1 + 0.2, 0.3)) // true
 ```
+
+# BigInt() and Really Large Numbers
+
+- There are two ways to represent large numbers in JavaScript: BigInt and adding an `n` suffix.
+- BigInt is a new primitive type in JavaScript that can represent integers with arbitrary precision.
+- You can create a BigInt by calling the `BigInt()` function with a number.
+  - `const bigInt = BigInt(123456789012345678901234567890)`
+- You can also create a BigInt by adding an `n` suffix to a number.
+  - `const bigInt = 123456789012345678901234567890n`
+- BigInts can be used with operators like `+`, `-`, `*`, and `/`.
+- BigInts and Floating Point Numbers cannot be mixed in operations.
