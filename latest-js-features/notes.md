@@ -114,3 +114,34 @@ const newStr = str.replaceAll('dog', 'cat')
 ```
 
 - Regular expressions can also be used with the String.prototype.replaceAll() method.
+
+# Logical Assignment
+
+- Logical assignment operators combine logical operators (&&, ||, ??) with assignment operators (=) to provide a more concise way of assigning values based on logical conditions.
+
+```js
+let x = null
+let y = 'default'
+
+// OR assignment (x ||= y) is equivalent to x || (x = y)
+x ||= y
+console.log(x) // Output: default
+
+let a = 0
+let b = 2
+
+// AND assignment (a &&=b) is equivalent to a && (a = b)
+a &&= b
+console.log(a) // Output: 0
+```
+
+- Logical assignment operators can be used with the nullish coalescing operator as well.
+
+```js
+let x = null
+let y = 'default
+
+// Nullish coalescing assignment (x ??= y) is equivalent to x ?? (x = y)
+x ??= y
+console.log(x) // Output: default
+```
