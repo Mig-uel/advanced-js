@@ -63,4 +63,18 @@ const user = {
 
 const lastName = user.lastName ?? 'Doe'
 ```
-q
+
+# Numeric Separators
+
+- Numeric separators are underscores (\_) that enhance readability for numeric literals by separating groups of digits to make large numeric literals easier to read.
+- Numeric separators are ignored by the JavaScript engine, so they do not affect the value of the numeric literal.
+
+```js
+// Without numeric separators, long numeric literals can be hard to read
+const withoutSeparators = 1000000000
+
+// With numeric separators, the numeric literal is easier to read
+const withSeparators = 1_000_000_000
+
+console.log(withSeparators) // Output: 1000000000
+```
