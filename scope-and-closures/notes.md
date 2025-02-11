@@ -210,7 +210,7 @@ console.log(generateId()) // 3
 - The `count` variable is incremented each time the `generate` function is called
 - This is an example of a closure where the `generate` function has access to the `count` variable from the `idGenerator` function
 
-# Closure (cont.)
+# Closures (cont.)
 
 - Closures are used to create private variables and functions
 - Closures are used to create factory functions
@@ -247,3 +247,51 @@ console.log(counter.getCount()) // 0
 - The `getCount` method returns the `count` variable
 - The `count` variable is private and cannot be accessed directly from outside the `createCounter` function
 - This is an example of a closure where the `increment`, `decrement`, and `getCount` methods have access to the `count` variable from the `createCounter` function
+
+# Closures (Factory Functions)
+
+- Closures are used to create factory functions
+- Factory functions are functions that return objects
+- Factory functions are used to create multiple instances of objects
+
+```js
+function createExponentFunction(exponent) {
+  return function (val) {
+    return val ** exponent
+  }
+}
+
+const square = createExponentFunction(2)
+const cube = createExponentFunction(3)
+
+console.log(square(2)) // 4
+console.log(cube(2)) // 8
+```
+
+- In the above example, the `createExponentFunction` function returns a function that calculates the exponent of a given value
+- The `square` function calculates the square of a given value
+- The `cube` function calculates the cube of a given value
+- The `square` and `cube` functions have access to the `exponent` variable from the `createExponentFunction` function
+- This is an example of a closure where the `square` and `cube` functions have access to the `exponent` variable from the `createExponentFunction` function
+
+```js
+function uniqueIdGenerator(prefix) {
+  let id = 0
+
+  return function () {
+    id++
+    return `${prefix}-${id}`
+  }
+}
+
+const generateUserId = uniqueIdGenerator('user')
+
+console.log(generateUserId()) // user-1
+console.log(generateUserId()) // user-2
+console.log(generateUserId()) // user-3
+```
+
+- In the above example, the `uniqueIdGenerator` function returns a function that generates a unique id with a given prefix
+- The `generateUserId` function generates a unique user id with the prefix `user`
+- The `generateUserId` function has access to the `id` variable from the `uniqueIdGenerator` function
+- This is an example of a closure where the `generateUserId` function has access to the `id` variable from the `uniqueIdGenerator` function
