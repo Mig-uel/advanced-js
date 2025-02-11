@@ -160,3 +160,52 @@ let color = 'red'
   console.log(x)
 })()
 ```
+
+# Closures
+
+- A closure is a function that has access to variables from another function's scope
+- A closure has access to its own scope, the outer function's scope, and the global scope
+- A closure has access to the outer function's variables even after the outer function has finished executing
+- Closures are used to create private variables and functions
+- The ability for inner functions to remember and access variables defined in outer functions, even after they have finished executing, is called closure
+
+```js
+function outerFunc() {
+  let outerVar = 'I am from outer function' // outer variable
+
+  function innerFunc() {
+    console.log('I am from inner function')
+    console.log('outerVar: ', outerVar) // inner function accessing outer variable
+  }
+
+  return innerFunc // returning inner function
+}
+
+const closure = outerFunc() // outer function is executed and inner function is returned
+closure() // I am from inner function, outerVar: I am from outer function
+```
+
+- In the above example, `innerFunc` is a closure because it has access to the `outerVar` variable from the `outerFunc` function
+- Even after the `outerFunc` function has finished executing, the `innerFunc` function still has access to the `outerVar` variable
+- This is because the `innerFunc` function has a reference to the `outerVar` variable in its closure
+
+```js
+function idGenerator() {
+  let count = 1
+
+  return function generate() {
+    return count++
+  }
+}
+
+const generateId = idGenerator()
+
+console.log(generateId()) // 1
+console.log(generateId()) // 2
+console.log(generateId()) // 3
+```
+
+- In the above example, the `idGenerator` function returns a function called `generate` which generates a unique id each time it is called
+- The `generate` function has access to the `count` variable from the `idGenerator` function
+- The `count` variable is incremented each time the `generate` function is called
+- This is an example of a closure where the `generate` function has access to the `count` variable from the `idGenerator` function
