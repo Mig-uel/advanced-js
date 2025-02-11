@@ -12,6 +12,16 @@ const myTimeout = setTimeout(() => {
 }, 2000)
 ```
 
+## clearTimeout
+
+`clearTimeout` is a method that stops the timeout execution set by `setTimeout`.
+
+- Clears a timeout set by `setTimeout`, stopping the function from executing.
+
+```javascript
+clearTimeout(myTimeout)
+```
+
 ## setInterval
 
 `setInterval` is a method that executes a function repeatedly after a specified amount of time. It returns a unique identifier that can be used to clear the interval.
