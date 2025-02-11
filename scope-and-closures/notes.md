@@ -135,3 +135,15 @@ function blah() {
   // TDZ ends here
 }
 ```
+
+## Temporal Dead Zone (TDZ)
+
+- Temporal Dead Zone (TDZ) is the time between the creation of a variable and its initialization
+- During the TDZ, the variable is in an uninitialized state and cannot be accessed
+- Accessing a variable in the TDZ results in a ReferenceError
+
+```js
+console.log(color) // ReferenceError: Cannot access 'color' before initialization
+
+let color = 'red'
+```
