@@ -72,3 +72,29 @@ function outer() {
 let foo = outer
 foo() // 10
 ```
+
+## Static Scope
+
+- JavaScript uses Lexical Scoping (Static Scope)
+- Lexical Scoping means that the scope of a variable is determined by its position in the source code
+- Lexical Scoping allows a function to access variables from its parent scope even after the parent function has finished executing
+- Other languages like C, Java, and Ruby use Dynamic Scoping
+- In Dynamic Scoping, the scope of a variable is determined by the calling context
+- However, JavaScript uses Lexical Scoping which means that the scope of a variable is determined by its position in the source code
+
+```js
+let animal = 'whale'
+
+function printAnimal() {
+  console.log(animal)
+}
+
+function alsoPrintAnimal() {
+  let animal = 'elephant'
+
+  printAnimal()
+}
+
+printAnimal() // whale
+alsoPrintAnimal() // whale
+```
