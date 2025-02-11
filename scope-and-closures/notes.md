@@ -147,3 +147,16 @@ console.log(color) // ReferenceError: Cannot access 'color' before initializatio
 
 let color = 'red'
 ```
+
+# IIFE (Immediately Invoked Function Expression)
+
+- IIFE is a function that is executed immediately after it is created
+- IIFE is used to create a new scope for variables and functions
+- IIFE is used to avoid polluting the global scope
+
+```js
+;(function () {
+  let x = 10
+  console.log(x)
+})()
+```
