@@ -295,3 +295,45 @@ console.log(generateUserId()) // user-3
 - The `generateUserId` function generates a unique user id with the prefix `user`
 - The `generateUserId` function has access to the `id` variable from the `uniqueIdGenerator` function
 - This is an example of a closure where the `generateUserId` function has access to the `id` variable from the `uniqueIdGenerator` function
+
+# Closures (Event Listeners)
+
+- Closures are used to create event listeners
+- Event listeners are functions that are executed when a specific event occurs
+- Event listeners are used to handle user interactions
+
+```js
+document.querySelector('button').addEventListener(
+  'click',
+  (function () {
+    let count = 0
+
+    return function () {
+      count++
+      console.log(`Button clicked ${count} times`)
+    }
+  })()
+)
+```
+
+- In the above example, an event listener is added to a button element
+- The event listener is an IIFE that returns a function that increments a `count` variable each time the button is clicked
+- The `count` variable is private and cannot be accessed directly from outside the event listener
+- This is an example of a closure where the event listener has access to the `count` variable
+
+```js
+function createCounter(id) {
+  let count = 0
+  const button = document.getElementById(id)
+
+  button.addEventListener('click', function () {
+    count++
+    button.innerText = `Clicked ${count} times`
+  })
+}
+
+createCounter('button1')
+createCounter('button2')
+
+// Two buttons with independent counters
+```
