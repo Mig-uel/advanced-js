@@ -209,3 +209,41 @@ console.log(generateId()) // 3
 - The `generate` function has access to the `count` variable from the `idGenerator` function
 - The `count` variable is incremented each time the `generate` function is called
 - This is an example of a closure where the `generate` function has access to the `count` variable from the `idGenerator` function
+
+# Closure (cont.)
+
+- Closures are used to create private variables and functions
+- Closures are used to create factory functions
+- Closures are used to create modules
+
+```js
+function createCounter() {
+  let count = 0
+
+  return {
+    increment() {
+      return count++
+    },
+    decrement() {
+      return count--
+    },
+    getCount() {
+      return count
+    },
+  }
+}
+
+const counter = createCounter()
+
+console.log(counter.increment()) // 0
+console.log(counter.increment()) // 1
+console.log(counter.decrement()) // 0
+console.log(counter.getCount()) // 0
+```
+
+- In the above example, the `createCounter` function returns an object with three methods: `increment`, `decrement`, and `getCount`
+- The `increment` method increments the `count` variable
+- The `decrement` method decrements the `count` variable
+- The `getCount` method returns the `count` variable
+- The `count` variable is private and cannot be accessed directly from outside the `createCounter` function
+- This is an example of a closure where the `increment`, `decrement`, and `getCount` methods have access to the `count` variable from the `createCounter` function
