@@ -31,3 +31,38 @@ console.log(isApproximatelyEqual(0.1 + 0.2, 0.3)) // true
   - `const bigInt = 123456789012345678901234567890n`
 - BigInts can be used with operators like `+`, `-`, `*`, and `/`.
 - BigInts and Floating Point Numbers cannot be mixed in operations.
+
+# isNaN() and Number.isNaN()
+
+- JavaScript's _NaN_ value is a special value that represents "Not a Number" and can be tricky.
+- It often comes from:
+  - Performing arithmetic operations on non-numeric values.
+  - Performing arithmetic operations that have no valid result.
+  - Logical math errors, like dividing by zero.
+  - Imaginary number, like the square root of a negative number.
+  - Conversion errors, like `Number("abc")`.
+
+```js
+console.log(0 / 0) // NaN
+console.log(1 / 0) // Infinity
+console.log(-1 / 0) // -Infinity
+console.log(Math.sqrt(-1)) // NaN
+console.log(Number('abc')) // NaN
+```
+
+## Checking for NaN
+
+- You can check if a value is NaN using the `isNaN()` function.
+- All _NaN_ values are considered unique and not equal to each other.
+- This means that `NaN === NaN` returns `false`.
+- There are two ways to check if a value is NaN:
+  - Using the `isNaN()` function:
+    - This returns true if _n_ is _NaN_ or is a value that cannot be converted to a number.
+    - However, the `isNaN()` function has some quirks:
+      - It coerces the argument to a number before checking if it is _NaN_.
+      - This means that `isNaN("abc")` returns `true`.
+      - This can lead to unexpected results.
+  - Using the `Number.isNaN()` function:
+    - This returns true if _n_ is _NaN_ and only if _n_ is _NaN_.
+    - This does not coerce the argument to a number.
+    - This means that `Number.isNaN("abc")` returns `false`.
