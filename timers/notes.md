@@ -23,3 +23,13 @@ const myInterval = setInterval(() => {
   console.log('This will log every 2 seconds')
 }, 2000)
 ```
+
+## clearInterval
+
+`clearInterval` is a method that stops the interval execution set by `setInterval`.
+
+- Clears an interval set by `setInterval`, stopping the function from executing further.
+
+```javascript
+clearInterval(myInterval)
+```
