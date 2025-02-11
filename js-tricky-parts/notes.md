@@ -200,3 +200,32 @@ console.log(fibGenerator.next().value) // 3
 - The `fibonacci()` function is a generator function that returns a generator object that generates Fibonacci numbers.
 - The `yield` keyword pauses the generator function and returns the value of `a`.
 - The `next()` method resumes the generator function and calculates the next Fibonacci number.
+
+## Use Cases For Function Generators
+
+- Generators are useful for:
+  - Lazy evaluation: You can generate values on demand.
+  - Infinite sequences: You can generate an infinite sequence of values.
+  - Asynchronous programming: You can pause and resume asynchronous operations.
+
+```js
+const allImages = Array.from(
+  { length: 100 },
+  (_, i) => `https://placeimg.com/640/480/any?image=${i + 1}`
+)
+
+function* getBatchOfImages(imagesArr, batchSize = 10) {
+  let currIndex = 0
+
+  while (currIndex < imagesArr.length) {
+    yield images.slice(currIndex, currIndex + batchSize)
+
+    currIndex += batchSize
+  }
+}
+
+const imageGenerator = getBatchOfImages(allImages)
+
+console.log(imageGenerator.next().value) // [ 'https://placeimg.com/640/480/any?image=1', ... ]
+console.log(imageGenerator.next().value) // [ 'https://placeimg.com/640/480/any?image=11', ... ]
+```
