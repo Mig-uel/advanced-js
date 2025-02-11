@@ -351,7 +351,7 @@ for (var i = 0; i < 3; i++) {
 }
 
 // 3 3 3
-```
+``
 
 - In the above example, the `setTimeout` function is called three times with a delay of 1 second
 - The `setTimeout` function logs the value of the `i` variable after 1 second
