@@ -107,4 +107,19 @@ console.log(counter.next()) // 2
 console.log(counter.count) // 3
 ```
 
+# Semi-colons and Automatic Semicolon Insertion
 
+- You can write JavaScript with or without semi-colons; if you omit them, JavaScript will automatically insert them in a process called _Automatic Semicolon Insertion_ or .
+- However, this can lead to unexpected results.
+- For example, if you omit a semi-colon after a return statement, JavaScript will insert one.
+- This can lead to a syntax error if the return statement is on a new line.
+- To avoid this issue, you can use semi-colons or always put the return statement on the same line as the closing brace.
+
+```js
+function add(a, b) {
+  return
+  a + b
+}
+
+console.log(add(1, 2)) // undefined
+```
