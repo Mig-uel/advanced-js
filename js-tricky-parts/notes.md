@@ -66,3 +66,45 @@ console.log(Number('abc')) // NaN
     - This returns true if _n_ is _NaN_ and only if _n_ is _NaN_.
     - This does not coerce the argument to a number.
     - This means that `Number.isNaN("abc")` returns `false`.
+
+# Post and Pre Increment/Decrement Operators (++x, x++, --x, x--)
+
+- There us a difference between the post and pre increment/decrement operators:
+
+```js
+let x = 5
+let y = ++x // add 1 to x then evaluate: x = 6, y = 6
+
+let a = 5
+let b = b++ // evaluate a then set b, then add 1 to b: a = 5, b = 6
+```
+
+- The post increment/decrement operators evaluate the expression first, then increment/decrement the variable.
+- The pre increment/decrement operators increment/decrement the variable first, then evaluate the expression.
+
+## Changing After Returning
+
+- Using `++x` is often useful as a return statement - return this value to the caller, but increment it for the next time.
+
+```js
+class Counter {
+  constructor() {
+    this.count = 1
+  }
+
+  next() {
+    return this.count++
+  }
+}
+
+const counter = new Counter()
+console.log(counter.count) // 1
+console.log(counter.next()) // 1
+
+console.log(counter.count) // 2
+console.log(counter.next()) // 2
+
+console.log(counter.count) // 3
+```
+
+
