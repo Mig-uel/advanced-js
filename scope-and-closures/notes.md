@@ -98,3 +98,40 @@ function alsoPrintAnimal() {
 printAnimal() // whale
 alsoPrintAnimal() // whale
 ```
+
+## Hoisting
+
+- Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope before code execution
+- Only the declarations are hoisted, not the initializations
+- `var` is hoisted but `let` and `const` are not hoisted
+  - `var` variable is legal but `undefined` until the code is executed
+
+```js
+console.log(food) // undefined
+var food = 'pizza'
+```
+
+```js
+function blah() {
+  console.log(color)
+}
+
+blah() // ReferenceError: color is not defined
+
+function blah() {
+  console.log(color)
+  var color = 'red'
+}
+
+blah() // undefined
+```
+
+```js
+function blah() {
+  // Temporal Dead Zone (TDZ)
+  console.log(color) // ReferenceError: Cannot access 'color' before initialization
+
+  let color = 'red'
+  // TDZ ends here
+}
+```
