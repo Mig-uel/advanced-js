@@ -123,3 +123,80 @@ function add(a, b) {
 
 console.log(add(1, 2)) // undefined
 ```
+
+# Generators and Yield
+
+- JavaScript can have _generator functions_ - function that return a _Generator_ that can be lazily iterated over.
+- Generator functions are basically functions that can be paused and resumed.
+- You can create a generator function by using the `function*` syntax.
+- You can pause a generator function by using the `yield` keyword.
+- You can resume a generator function by calling the `next()` method on the generator object.
+- You can pass a value to a generator function by calling the `next()` method with an argument.
+- You can return a value from a generator function by using the `return` keyword.
+- You can close a generator function by using the `throw` keyword.
+
+### Example 1
+
+```js
+function* evens(n) {
+  while (true) {
+    yield n
+    n += 2
+  }
+}
+
+const generator = evens(0)
+console.log(generator.next().value) // 0
+console.log(generator.next().value) // 2
+console.log(generator.next().value) // 4
+console.log(generator.next().value) // 6
+```
+
+- The `evens()` function is a generator function that returns a generator object that generates even numbers.
+- The `yield` keyword pauses the generator function and returns the value of `n`.
+- The `next()` method resumes the generator function and increments `n` by 2.
+
+### Example 2
+
+```js
+function* myCats() {
+  yield 'Fluffy'
+  yield 'Mittens'
+  yield 'Snowball'
+}
+
+const catGenerator = myCats()
+console.log(catGenerator.next().value) // 'Fluffy'
+console.log(catGenerator.next().value) // 'Mittens'
+console.log(catGenerator.next().value) // 'Snowball'
+console.log(catGenerator.next()) // { value: undefined, done: true }
+```
+
+- The `myCats()` function is a generator function that returns a generator object that generates cat names.
+- The `yield` keyword pauses the generator function and returns the value of the cat name.
+- The `next()` method resumes the generator function and returns an object with the value of the cat name and a `done` property that indicates if the generator has finished.
+
+### Example 3
+
+```js
+function* fibonacci() {
+  let a = 0,
+    b = 1
+
+  while (true) {
+    yield a
+    ;[a, b] = [b, a + b]
+  }
+}
+
+const fibGenerator = fibonacci()
+console.log(fibGenerator.next().value) // 0
+console.log(fibGenerator.next().value) // 1
+console.log(fibGenerator.next().value) // 1
+console.log(fibGenerator.next().value) // 2
+console.log(fibGenerator.next().value) // 3
+```
+
+- The `fibonacci()` function is a generator function that returns a generator object that generates Fibonacci numbers.
+- The `yield` keyword pauses the generator function and returns the value of `a`.
+- The `next()` method resumes the generator function and calculates the next Fibonacci number.
