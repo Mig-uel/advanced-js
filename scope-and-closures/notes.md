@@ -337,3 +337,42 @@ createCounter('button2')
 
 // Two buttons with independent counters
 ```
+
+# Closures (Loops)
+
+- In older versions of JavaScript, closures were often used to solve the problem of variables in loops
+- In ES6, the `let` keyword was introduced which solves this problem
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(i)
+  }, 1000)
+}
+
+// 3 3 3
+```
+
+- In the above example, the `setTimeout` function is called three times with a delay of 1 second
+- The `setTimeout` function logs the value of the `i` variable after 1 second
+- The `i` variable is declared with the `var` keyword which is function-scoped
+- The `i` variable is incremented to 3 in the loop and the `setTimeout` function logs the value of `i` after 1 second
+- Since the `i` variable is function-scoped, the value of `i` is 3 when the `setTimeout` function is executed
+- As a result, the `setTimeout` function logs `3` three times
+
+```js
+for (var i = 0; i < 6; i++) {
+  ;(function (j) {
+    setTimeout(function () {
+      console.log(j)
+    }, 1000)
+  })(i)
+}
+```
+
+- In the above example, the `setTimeout` function is called six times with a delay of 1 second
+- The `setTimeout` function logs the value of the `j` variable after 1 second
+- The `j` variable is passed as an argument to an IIFE which creates a new scope for each iteration of the loop
+- The `j` variable is incremented to `i` in the loop and the `setTimeout` function logs the value of `j` after 1 second
+- Since the `j` variable is block-scoped, the value of `j` is `0`, `1`, `2`, `3`, `4`, `5` when the `setTimeout` function is executed
+- As a result, the `setTimeout` function logs `0`, `1`, `2`, `3`, `4`, `5` after 1 second
