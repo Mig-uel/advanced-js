@@ -229,3 +229,74 @@ const imageGenerator = getBatchOfImages(allImages)
 console.log(imageGenerator.next().value) // [ 'https://placeimg.com/640/480/any?image=1', ... ]
 console.log(imageGenerator.next().value) // [ 'https://placeimg.com/640/480/any?image=11', ... ]
 ```
+
+# Array.from()
+
+- The `Array.from()` method creates a new array from an array-like or iterable object.
+- You can pass an array-like object, like a string or a NodeList, to the `Array.from()` method.
+- You can pass an iterable object, like a Set or a Map, to the `Array.from()` method.
+- You can pass a mapping function to the `Array.from()` method to transform the elements of the array.
+- You can pass a `this` argument to the `Array.from()` method to set the `this` value in the mapping function.
+
+### Example 1
+
+```js
+const str = 'hello'
+const arr = Array.from(str)
+
+console.log(arr) // [ 'h', 'e', 'l', 'l', 'o' ]
+```
+
+- The `Array.from()` method creates a new array from the string `hello`.
+
+### Example 2
+
+```js
+const set = new Set([1, 2, 3])
+const arr = Array.from(set)
+
+console.log(arr) // [ 1, 2, 3 ]
+```
+
+- The `Array.from()` method creates a new array from the Set `[1, 2, 3]`.
+
+### Example 3
+
+```js
+const buttons = document.querySelectorAll('button')
+const arr = Array.from(buttons)
+
+console.log(arr) // [ <button>, <button>, <button> ]
+```
+
+- The `Array.from()` method creates a new array from the NodeList of buttons.
+
+### Example 4
+
+```js
+Array.from('hello', (char) => char.toUpperCase())
+```
+
+- Array.from() can take a mapping function as a second argument.
+- This function is called for each element in the array.
+- The `Array.from()` method creates a new array from the string `hello` and transforms each character to uppercase.
+
+### Example 5
+
+```js
+Array.from({ length: 10 }, (el) => true)
+
+// [ true, true, true, true, true, true, true, true, true, true ]
+```
+
+- The `Array.from()` method creates a new array with a length of 10 and sets each element to `true`.
+
+### Example 6
+
+```js
+Array.from({ length: 10 }, (element, index) => index + 1)
+
+// [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+```
+
+- The `Array.from()` method creates a new array with a length of 10 and sets each element to the index plus 1.
