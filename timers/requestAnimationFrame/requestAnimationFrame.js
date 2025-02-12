@@ -12,7 +12,12 @@ function animateWithInterval() {
 //start the animation
 setInterval(animateWithInterval, 8) // 60FPS (approximately)
 
-function animateWithAnimationFrame() {
+let prevTime
+function animateWithAnimationFrame(currentTime) {
+  console.log(currentTime - prevTime)
+
+  prevTime = currentTime
+
   boxAnimationFrame.style.transform = `rotate(${animationFrameAngle}deg)`
   animationFrameAngle += 2
   requestAnimationFrame(animateWithAnimationFrame)
