@@ -48,3 +48,53 @@ async function fetchData() {
   }
 }
 ```
+
+# Sending Request Headers With Fetch
+
+The `fetch` function accepts an optional second parameter, an object that allows you to configure the request. This object can be used to set request headers, specify the request method, and more.
+
+```js
+async function fetchDataWithHeaders() {
+  const headers = new Headers({
+    'Content-Type': 'application/json
+    'Authorization': 'Bearer token'
+  })
+
+  try {
+    const res await fetch('https://api.example.com/data', {
+      method: 'GET',
+      headers
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+
+    const data = await res.json()
+
+    console.log(data)
+  }
+  catch(error){
+    console.error(error)
+  }
+}
+
+fetchDataWithHeaders()
+```
+
+Headers in a fetch request are used to provide additional information about the request being sent or specify how the client expects the response to be formatted. They play a crucial role in defining the communication between the client and the server. Here are few key purposes headers serve:
+
+1. **Specifying Content Type**
+   Headers like Content-Type tell the server the format of the data being sent (e.g., JSON, XML, or plain text).
+   `"Content-Type": "application/json" `
+
+2. **Authentication**
+   Headers are often used to include authentication tokens or API keys, enabling the server to verify the client's identity.
+   `"Authorization": "Bearer <token>" `
+
+3) **Custom Headers**
+   They allow the client to send custom metadata, like specific application configurations or user settings.
+
+4. **Accept Header**
+   Specifies the format the client expects in the response, such as JSON or HTML.
+   `"Accept": "application/json"`
