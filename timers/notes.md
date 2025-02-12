@@ -93,3 +93,9 @@ const searchInput = document.querySelector('#search')
 
 searchInput.addEventListener('input', debounce(queryAPI, 400))
 ```
+
+## Throttling
+
+Throttling is a technique used to ensure that a function is not called more often than a specified time interval. It limits the rate at which a function is executed.
+
+- It limits the rate at which a function is called, ensuring that it is not called more often than a specified time interval.
