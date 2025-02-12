@@ -67,3 +67,29 @@ searchInput.addEventListener('input', () => {
   }, 400)
 })
 ```
+
+## Advanced Debouncing
+
+We can also create a reusable debouncing function that can be used for multiple functions.
+
+```javascript
+function debounce(func, delay) {
+  let timeoutId
+
+  return function () {
+    clearTimeout(timeoutId)
+
+    timeoutId = setTimeout(() => {
+      func.apply(this, arguments)
+    }, delay)
+  }
+}
+
+function queryAPI() {
+  console.log('SEARCHING THE API')
+}
+
+const searchInput = document.querySelector('#search')
+
+searchInput.addEventListener('input', debounce(queryAPI, 400))
+```
