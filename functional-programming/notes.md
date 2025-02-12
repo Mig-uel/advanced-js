@@ -495,3 +495,38 @@ slugify('Hello World') // hello-world
 - In this example, the `compose` function is used to combine the `lowerCaseString`, `splitString`, and `joinWithDash` functions.
 - The `compose` function takes an array of functions and returns a new function that applies each function in reverse order.
 - The `slugify` function is created by composing the `lowerCaseString`, `splitString`, and `joinWithDash` functions.
+
+## Currying (Advanced)
+
+Currying is the process of converting a function that takes multiple arguments into a sequence of functions that each take a single argument.
+
+A _curried_ function can be called with any number of arguments - if you call it with fewer arguments than it expects, it returns a new "smaller" partial, which you can then call with the remaining arguments.
+
+- Currying is a fundamental concept in functional programming.
+- Converting a function that takes multiple arguments into a sequence of functions that each take a single argument.
+- Currying allows you to create new functions by partially applying the original function.
+- Currying is interesting, and more advanced - you may find it useful to study this concept further.
+
+```js
+// Non-curried function
+function add(a, b, c) {
+  return a + b + c
+}
+add(1, 2, 3) // 6
+
+// Curried function
+function addCurry(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c
+    }
+  }
+}
+
+addCurry(1)(2)(3) // 6
+```
+
+- In this example, the `add` function is curried to produce the `addCurry` function.
+- The `addCurry` function takes the first argument `a` and returns a new function that takes the second argument `b`.
+- The new function returns another function that takes the third argument `c`.
+- The final function returns the sum of `a`, `b`, and `c`.
