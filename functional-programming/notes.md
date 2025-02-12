@@ -441,3 +441,27 @@ joinWithDash(splitString(lowerCaseString('Hello World'))) // hello-world
 ```
 
 - In this example, the `lowerCaseString`, `splitString`, and `joinWithDash` functions are composed to produce a new function.
+
+## Writing A Simple Compose Function
+
+```js
+function compose(fn1, fn2) {
+  return function (value) {
+    return fn2(fn1(value))
+  }
+}
+
+function repeatTwice(str) {
+  return str.repeat(2)
+}
+
+function upperCaseString(str) {
+  return str.toUpperCase()
+}
+
+const repeatAndUppercase = compose(repeatTwice, upperCaseString)
+
+repeatAndUppercase('hello') // HELLOHELLO
+```
+
+- In this example, the `compose` function is used to combine the `repeatTwice` and `upperCaseString` functions.
