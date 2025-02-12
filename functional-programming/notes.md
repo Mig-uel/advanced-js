@@ -292,3 +292,70 @@ greetHello('Alice') // Hello, Alice!
 ```
 
 - In this example, the `greet` function is partially applied with the greeting `'Hello'`.
+
+## Writing A Partial Function
+
+```js
+function multiply(a, b) {
+  return a * b
+}
+
+const double = multiply.bind(null, 2) // Partial application
+const triple = multiply.bind(null, 3) // Partial application
+
+console.log(double(5)) // 10
+console.log(triple(5)) // 15
+```
+
+- In this example, the `multiply` function is partially applied with the first argument.
+
+```js
+function multiply(a, b) {
+  return a * b
+}
+
+function partial(func, ...fixedArgs) {
+  return function (...remainingArgs) {
+    return func(...fixedArgs, ...remainingArgs)
+  }
+}
+
+const double = partial(multiply, 2) // Partial application
+const triple = partial(multiply, 3) // Partial application
+
+console.log(double(5)) // 10
+console.log(triple(5)) // 15
+```
+
+- In this example, the `partial` function is used to create a new function with some arguments fixed.
+
+```js
+function partial(func, ...fixedArgs) {
+  return function (...remainingArgs) {
+    return func(...fixedArgs, ...remainingArgs)
+  }
+}
+
+function fetchData(url, apiKey, params) {
+  const queryString = new URLSearchParams(params).toString()
+  const fullUrl = `${url}?${queryString}`
+
+  console.log(`Fetching data from ${fullUrl} using API key ${apiKey}`)
+}
+
+const myApiKey = 'abc123'
+const apiURL = 'https://api.example.com'
+
+const googleApiKey = 'xyz456'
+const googleApiURL = 'https://api.google.com'
+
+const fetchMyApi = partial(fetchData, apiURL, myApiKey)
+const fetchGoogleApi = partial(fetchData, googleApiURL, googleApiKey)
+
+fetchMyApi({ page: 1, limit: 10 }) // Fetching data from https://api.example.com?page=1&limit=10 using API key abc123
+fetchGoogleApi({ page: 1, limit: 10 }) // Fetching data from https://api.google.com?page=1&limit=10 using API key xyz456
+```
+
+- In this example, the `fetchData` function is partially applied with the URL and API key.
+- The `partial` function is used to create a new function with some arguments fixed.
+- The `fetchMyApi` and `fetchGoogleApi` functions are created by partially applying the `fetchData` function.
