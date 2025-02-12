@@ -274,3 +274,21 @@ console.log(factorial(5)) // 120
 
 - In this example, the `factorial` function calculates the factorial of a number using recursion.
 
+## Partial Application
+
+Partial application is a technique in which a function is called with fewer arguments than it expects. The function returns a new function that takes the remaining arguments.
+
+- The process of executing a function with some or all of its arguments. The partially applied function then gets returned for later use.
+
+- Partial application is useful for creating new functions from existing functions by fixing some of the arguments.
+
+```js
+function greet(greeting, name) {
+  console.log(`${greeting}, ${name}!`)
+}
+
+const greetHello = greet.bind(null, 'Hello') // Partial application
+greetHello('Alice') // Hello, Alice!
+```
+
+- In this example, the `greet` function is partially applied with the greeting `'Hello'`.
