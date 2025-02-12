@@ -530,3 +530,34 @@ addCurry(1)(2)(3) // 6
 - The `addCurry` function takes the first argument `a` and returns a new function that takes the second argument `b`.
 - The new function returns another function that takes the third argument `c`.
 - The final function returns the sum of `a`, `b`, and `c`.
+
+## More Advanced Currying
+
+```js
+function add3(x, y, z) {
+  return x + y + z
+}
+
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) return fn.apply(this, args)
+    else {
+      return function (...args2) {
+        return curried.apply(this, args.concat(args2))
+      }
+    }
+  }
+}
+
+const curriedAdd3 = curry(add3)
+
+console.log(curriedAdd3(1)(2)(3)) // 6
+console.log(curriedAdd3(1, 2)(3)) // 6
+console.log(curriedAdd3(1)(2, 3)) // 6
+```
+
+- In this example, the `curry` function is used to convert the `add3` function into a curried function.
+- The `curry` function takes a function `fn` and returns a new function `curried`.
+- The `curried` function checks if the number of arguments is equal to the number of arguments expected by the original function.
+- If the number of arguments is less than the expected number, it returns a new function that takes the remaining arguments.
+- The `curriedAdd3` function is created by currying the `add3` function.
