@@ -98,3 +98,66 @@ const func = function (person) {
 
 const functions = [func, func]
 ```
+
+## Pure Functions
+
+A pure function is a function that:
+
+- Given the same input, will always return the same output.
+- The function cannot depend on any mutable state.- Produces no side effects.
+- Produces no side effects.
+- Side effects include:
+
+  - Modifying any external variable or object property.
+  - Logging to the console.
+  - Writing to the screen.
+  - Writing to a file.
+  - Writing to the network.
+  - Triggering any external process.
+  - Calling any other functions with side-effects.
+
+- Pure functions are deterministic.
+
+```js
+// Impure Function
+let val = 2
+
+function squareAndUpdateValue(n) {
+  val = n * n
+  return val
+}
+```
+
+- This function is impure because it modifies the external variable `val`.
+
+```js
+// Pure Function
+function square(n) {
+  return n * n
+}
+```
+
+- This function is pure because it does not modify any external state.
+
+```js
+const colors = ['red', 'green', 'blue']
+
+// Impure Function
+function addToArray(arr, val) {
+  arr.push(val)
+}
+```
+
+- This function is impure because it modifies the array `colors`.
+
+```js
+const colors = ['red', 'green', 'blue']
+
+// Pure Function
+function addToArray(arr, val) {
+  return [...arr, val]
+}
+```
+
+- This function is pure because it does not modify the array `colors`.
+- Instead, it returns a new array with the new value added.
