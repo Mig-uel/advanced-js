@@ -99,3 +99,18 @@ searchInput.addEventListener('input', debounce(queryAPI, 400))
 Throttling is a technique used to ensure that a function is not called more often than a specified time interval. It limits the rate at which a function is executed.
 
 - It limits the rate at which a function is called, ensuring that it is not called more often than a specified time interval.
+
+## RequestAnimationFrame
+
+`requestAnimationFrame` is a method that tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint.
+
+- It schedules a function to be called before the next repaint, allowing for smooth animations.
+
+```javascript
+function animate() {
+  // Perform animation logic here
+  requestAnimationFrame(animate)
+}
+
+animate()
+```
