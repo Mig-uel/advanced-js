@@ -43,3 +43,27 @@ const myInterval = setInterval(() => {
 ```javascript
 clearInterval(myInterval)
 ```
+
+## Debouncing
+
+Debouncing is a technique used to limit the rate at which a function is executed. It ensures that a function is not called more often than a specified time interval.
+
+- It delays the execution of a function until after a specified time interval has passed since the last time the function was called.
+
+```javascript
+function queryAPI() {
+  console.log('SEARCHING THE API')
+}
+
+const searchInput = document.querySelector('#search')
+
+let debounceTimeout
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(debounceTimeout)
+
+  debounceTimeout = setTimeout(() => {
+    queryAPI()
+  }, 400)
+})
+```
