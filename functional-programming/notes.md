@@ -384,3 +384,60 @@ console.log(calcCASalesTax(100)) // 7.50
 - In this example, the `calcTax` function is partially applied with the tax rate.
 - The `partial` function is used to create a new function with some arguments fixed.
 - The `calcNYSalesTax` and `calcCASalesTax` functions are created by partially applying the `calcTax` function.
+
+## Composition
+
+Function composition is the process of combining two or more functions to produce a new function. The output of one function is passed as the input to the next function.
+
+- Function composition is a fundamental concept in functional programming.
+- Combining functions to create new functions.
+- The result of one function is passed as the input to another function.
+- In mathematics, function composition is denoted by `(f ∘ g)(x) = f(g(x))`.
+
+```js
+const add = (a, b) => a + b
+const multiply = (a, b) => a * b
+
+add(10, multiply(2, 3)) // 16
+```
+
+- In this example, the `add` and `multiply` functions are composed to produce a new function.
+
+```js
+const add = (a, b) => a + b
+const square = (n) => n * n
+
+const addAndSquare = (a, b) => square(add(a, b))
+
+addAndSquare(2, 3) // 25
+```
+
+- In this example, the `add` and `square` functions are composed to produce a new function.
+
+## How To Write Functions For Composition
+
+When writing functions for composition, it's important to follow these guidelines:
+
+- Each function should do one thing and do it well.
+- Each function should take one or more arguments and return a value.
+- Each function should be pure and have no side effects.
+
+When composing functions together, it's often best to not use methods, but instead create independent functions with a minimal number of arguments.
+
+```js
+function lowerCaseString(str) {
+  return str.toLowerCase()
+}
+
+function splitString(str) {
+  return str.split(' ')
+}
+
+function joinWithDash(arr) {
+  return arr.join('-')
+}
+
+joinWithDash(splitString(lowerCaseString('Hello World'))) // hello-world
+```
+
+- In this example, the `lowerCaseString`, `splitString`, and `joinWithDash` functions are composed to produce a new function.
