@@ -36,8 +36,19 @@ function loadMoreItems() {
   }
 }
 
+/** Basic Throttling Logic */
+let isThrottled = false
+
 window.addEventListener('scroll', () => {
-  loadMoreItems()
+  if (!isThrottled) {
+    loadMoreItems()
+
+    isThrottled = true
+
+    setTimeout(() => {
+      isThrottled = false
+    }, 300)
+  }
 })
 
 // initial load
