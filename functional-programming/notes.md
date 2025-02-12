@@ -465,3 +465,33 @@ repeatAndUppercase('hello') // HELLOHELLO
 ```
 
 - In this example, the `compose` function is used to combine the `repeatTwice` and `upperCaseString` functions.
+
+## Writing A More Complex Compose Function
+
+```js
+function compose(...functions) {
+  return function (data) {
+    return functions.reduceRight((val, fn) => fn(val), data)
+  }
+}
+
+function lowerCaseString(str) {
+  return str.toLowerCase()
+}
+
+function splitString(str) {
+  return str.split(' ')
+}
+
+function joinWithDash(arr) {
+  return arr.join('-')
+}
+
+const slugify = compose(joinWithDash, splitString, lowerCaseString)
+
+slugify('Hello World') // hello-world
+```
+
+- In this example, the `compose` function is used to combine the `lowerCaseString`, `splitString`, and `joinWithDash` functions.
+- The `compose` function takes an array of functions and returns a new function that applies each function in reverse order.
+- The `slugify` function is created by composing the `lowerCaseString`, `splitString`, and `joinWithDash` functions.
