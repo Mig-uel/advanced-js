@@ -82,3 +82,19 @@ for (let i = 1; i < numbers.length; i++) {
 // Functional Programming
 Math.max(...numbers)
 ```
+
+## First Class Functions
+
+In functional programming, functions are first-class citizens, meaning they can be:
+
+- Assigned to variables
+- Passed as arguments to other functions
+- Returned from other functions
+
+```js
+const func = function (person) {
+  console.log(`Hello, ${person}!`)
+}
+
+const functions = [func, func]
+```
