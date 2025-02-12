@@ -161,3 +161,40 @@ function addToArray(arr, val) {
 
 - This function is pure because it does not modify the array `colors`.
 - Instead, it returns a new array with the new value added.
+
+## Higher-Order Functions
+
+A higher-order function is a function that:
+
+- Takes one or more functions as arguments.
+- Returns a function as its result.
+- Or does both.
+
+```js
+function doTwice(func) {
+  func()
+  func()
+}
+
+doTwice(function () {
+  console.log('Hello!')
+}) // Hello! Hello!
+```
+
+- In this example, `doTwice` is a higher-order function that takes a function as an argument.
+
+```js
+function multiply(factor) {
+  return function (number) {
+    return number * factor
+  }
+}
+
+const double = multiply(2)
+const triple = multiply(3)
+
+console.log(double(5)) // 10
+console.log(triple(5)) // 15
+```
+
+- In this example, `multiply` is a higher-order function that returns a function.
