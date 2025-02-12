@@ -237,3 +237,40 @@ function removeLastItem(arr) {
 ```
 
 - In this example, the `numbers` array is immutable because a new array is created when a value is removed.
+
+## Recursion
+
+Recursion is a technique in which a function calls itself to solve smaller instances of the same problem. Recursion is a fundamental concept in functional programming.
+
+- Recursion is often used to solve problems that can be broken down into smaller, similar subproblem.
+
+```js
+// Imperative Approach
+function factorial(n) {
+  let result = 1
+
+  for (let i = n; i > 1; i--) {
+    result *= i
+  }
+
+  return result
+}
+```
+
+- In this example, the `factorial` function calculates the factorial of a number using a loop.
+
+```js
+// Recursive Approach
+function factorial(n) {
+  if (n === 0 || n === 1) {
+    return 1
+  }
+
+  return n * factorial(n - 1)
+}
+
+console.log(factorial(5)) // 120
+```
+
+- In this example, the `factorial` function calculates the factorial of a number using recursion.
+
