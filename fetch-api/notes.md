@@ -98,3 +98,40 @@ Headers in a fetch request are used to provide additional information about the 
 4. **Accept Header**
    Specifies the format the client expects in the response, such as JSON or HTML.
    `"Accept": "application/json"`
+
+# POST Requests With Fetch
+
+The `fetch` function can be used to make POST requests by specifying the request method in the configuration object. When making a POST request, you can include a body in the request to send data to the server.
+
+```js
+async function postData() {
+  const data = {
+    name: 'John Doe',
+    email: '',
+  }
+
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+  })
+
+  try {
+    const res = await fetch('https://api.example.com/data', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(data),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to post data')
+    }
+
+    const response = await res.json()
+
+    console.log(response)
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+In the example above, we are sending a POST request to the server with a JSON payload. The `Content-Type` header is set to `application/json`, and the data is stringified using `JSON.stringify` before being sent in the request body.
