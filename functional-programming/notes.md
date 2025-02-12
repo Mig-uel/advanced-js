@@ -198,3 +198,42 @@ console.log(triple(5)) // 15
 ```
 
 - In this example, `multiply` is a higher-order function that returns a function.
+
+## Immutability
+
+Immutability is a core concept in functional programming. It means that once a value is created, it cannot be changed. Instead, you create a new value based on the existing value.
+
+- Immutability goes hand in hand with pure functions. Pure functions do not modify the input values but return new values based on the input.
+
+```js
+const person = {
+  name: 'Alice',
+  age: 30,
+}
+
+Object.freeze(person) // Make the object immutable
+```
+
+- In this example, the `person` object is immutable because it is frozen.
+
+```js
+const numbers = [1, 2, 3, 4, 5]
+
+function push(arr, val) {
+  return [...arr, val] // Create a new array
+}
+
+const newNumbers = push(numbers, 6)
+```
+
+- In this example, the `numbers` array is immutable because a new array is created when a value is added.
+
+```js
+const numbers = [1, 2, 3, 4, 5]
+
+function removeLastItem(arr) {
+  return arr.slice(0, -1) // Create a new array
+}
+```
+
+- In this example, the `numbers` array is immutable because a new array is created when a value is removed.
