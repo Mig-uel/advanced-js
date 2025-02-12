@@ -359,3 +359,28 @@ fetchGoogleApi({ page: 1, limit: 10 }) // Fetching data from https://api.google.
 - In this example, the `fetchData` function is partially applied with the URL and API key.
 - The `partial` function is used to create a new function with some arguments fixed.
 - The `fetchMyApi` and `fetchGoogleApi` functions are created by partially applying the `fetchData` function.
+
+```js
+function partial(func, ...fixedArgs) {
+  return function (...remainingArgs) {
+    return func(...fixedArgs, ...remainingArgs)
+  }
+}
+
+function calcTax(rate, amount) {
+  const total = rate * amount
+  const rounded = Math.round(total * 100) / 100
+
+  return Number(rounded.toFixed(2))
+}
+
+const calcNYSalesTax = partial(calcTax, 0.04)
+const calcCASalesTax = partial(calcTax, 0.075)
+
+console.log(calcNYSalesTax(100)) // 4.00
+console.log(calcCASalesTax(100)) // 7.50
+```
+
+- In this example, the `calcTax` function is partially applied with the tax rate.
+- The `partial` function is used to create a new function with some arguments fixed.
+- The `calcNYSalesTax` and `calcCASalesTax` functions are created by partially applying the `calcTax` function.
