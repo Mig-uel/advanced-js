@@ -135,3 +135,41 @@ async function postData() {
 ```
 
 In the example above, we are sending a POST request to the server with a JSON payload. The `Content-Type` header is set to `application/json`, and the data is stringified using `JSON.stringify` before being sent in the request body.
+
+# Uploading Files With Fetch
+
+To upload files using the Fetch API, you can create a `FormData` object and append the file data to it. The `fetch` function can then be used to send the form data to the server.
+
+```js
+async function uploadFile(file) {
+  const formData = new FormData()
+  formData.append('file', file)
+
+  try {
+    const res = await fetch('https://api.example.com/upload', {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to upload file')
+    }
+
+    const result = await res.json()
+
+    console.log(response)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// assuming there's an input element with type="file" and ID "myFile"
+const fileInput = document.getElementById('myFile')
+fileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0]
+  uploadFile(file)
+})
+```
+
+In the example above, we create a `FormData` object and append the file data to it using the `append` method. We then send the form data in a POST request to the server. The server can access the file data using the appropriate file upload handling mechanism.
+In the server-side code, you would typically handle file uploads using a library or framework that supports file uploads, such as multer in Node.js or Django's file upload handling in Python.
