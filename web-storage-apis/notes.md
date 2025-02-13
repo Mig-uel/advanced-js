@@ -43,3 +43,14 @@ const retrievedScores = JSON.parse(localStorage.getItem('scores'))
 
 - `JSON.stringify()` converts a JavaScript object or value to a JSON string.
 - `JSON.parse()` parses a JSON string, constructing the JavaScript value or object described by the string.
+
+## What Should And Should Not Be Stored In Local Storage
+
+- **Should**: User preferences, form data, shopping cart items, UI state.
+  - Non-sensitive data that can be used to enhance user experience.
+  - Data that can be used to improve performance.
+  - Analytics data.
+- **Should Not**: Sensitive data, large amounts of data (5MB is a lot, but not unlimited), data that needs to be shared with the server.
+  - Sensitive data can be manipulated by the user.
+  - Large amounts of data can slow down your web application.
+  - Data that needs to be shared with the server should be stored in a database.
