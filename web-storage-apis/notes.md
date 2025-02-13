@@ -23,3 +23,23 @@ localStorage.removeItem('color')
 // Clear all
 localStorage.clear()
 ```
+
+- If a key/value pair already exists, `setItem()` will update the value.
+- `getItem()` returns `null` if the key does not exist.
+
+## Local Storage With Complex Data
+
+Local storage can only store strings. To store arrays or objects, you would have to convert them to strings.
+
+```javascript
+const scores = [10, 20, 30]
+
+// Store
+localStorage.setItem('scores', JSON.stringify(scores))
+
+// Retrieve
+const retrievedScores = JSON.parse(localStorage.getItem('scores'))
+```
+
+- `JSON.stringify()` converts a JavaScript object or value to a JSON string.
+- `JSON.parse()` parses a JSON string, constructing the JavaScript value or object described by the string.
