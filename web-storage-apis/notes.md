@@ -93,3 +93,75 @@ sessionStorage.removeItem('color')
 // Clear all
 sessionStorage.clear()
 ```
+
+# IndexedDB Basics
+
+IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data.
+
+IndexedDB is a transactional database system, like an SQL-based RDBMS. It is more powerful than local storage and similar to a client-side database.
+
+IndexedDB is not a relational database, but an object-oriented database. It stores data in objects, organized into object stores.
+
+IndexedDB is ideal for applications that store a large amount of data, and need to search that data.
+
+```javascript
+const openRequest = indexedDB.open('myDatabase', 1)
+
+openRequest.onupgradeneeded = (event) => {
+  const db = event.target.result
+  const store = db.createObjectStore('myStore', { keyPath: 'id' })
+}
+
+openRequest.onsuccess = (event) => {
+  console.log('Database opened successfully')
+
+  const db = event.target.result
+
+  const transaction = db.transaction('myStore', 'readwrite')
+
+  const store = transaction.objectStore('myStore')
+
+  store.add('Hello', 'greeting')
+  store.put({ id: 1, name: 'Alice' })
+  store.put({ id: 2, name: 'Jake' })
+
+  const user = store.get(1)
+
+  user.onsuccess = (event) => {
+    console.log(event.target.result)
+  }
+
+  const users = store.getAll()
+
+  users.onsuccess = (event) => {
+    console.log(event.target.result)
+  }
+
+  transaction.oncomplete = (event) => {
+    console.log('Transaction completed')
+
+    db.close()
+  }
+}
+
+openRequest.onerror = (event) => {
+  console.error('Database error:', event.target.errorCode)
+```
+
+- First, open a connection to the database.
+  - If the database does not exist, it is created.
+  - The arguments are the database name and version.
+- The `onupgradeneeded` event is triggered when the database is created or the version changes.
+- Create an object store in the database.
+  - An object store is a container for data.
+  - The `keyPath` is the property that uniquely identifies the object.
+- Open a transaction to the object store.
+  - The arguments are the object store name and the transaction mode.
+  - The transaction mode can be `readonly`, `readwrite`, or `versionchange`.
+  - The `versionchange` mode is required to create or delete object stores.
+  - The transaction is committed when the transaction is complete.
+- Get the object store from the transaction.
+  - The object store is used to add, get, or delete data.
+- Add data to the object store.
+  - The first argument is the data.
+  - The second argument is the key.
