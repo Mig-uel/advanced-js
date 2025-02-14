@@ -54,3 +54,16 @@ const retrievedScores = JSON.parse(localStorage.getItem('scores'))
   - Sensitive data can be manipulated by the user.
   - Large amounts of data can slow down your web application.
   - Data that needs to be shared with the server should be stored in a database.
+
+## Syncing Tabs With The Storage Event
+
+The `storage` event is fired on the window object whenever `setItem()`, `removeItem()`, or `clear()` is called and actually changes something.
+
+```javascript
+window.addEventListener('storage', (event) => {
+  console.log(event.key, event.newValue)
+})
+```
+
+- The `storage` event is not fired when `setItem()`, `removeItem()`, or `clear()` is called from the same window that made the changes.
+- The `storage` event is fired on other windows/tabs when the storage changes in the window that made the changes.
