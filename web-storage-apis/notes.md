@@ -9,6 +9,7 @@ Local storage provides at least 5MB of data storage across all major web browser
 - **Local storage** stores data with no expiration date, and gets cleared only through JavaScript, or clearing the Browser cache / Locally Stored Data.
 - **Session storage** stores data only for a session, meaning that the data is stored until the browser (or tab) is closed.
 - **Cookies** are mainly for reading server-side, but can also be read on the client side. They can be created using JavaScript, but are mainly used for server-side reading.
+- **IndexedDB** is a low-level API for client-side storage of significant amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data.
 
 ```javascript
 // Store
