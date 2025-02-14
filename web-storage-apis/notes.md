@@ -67,3 +67,28 @@ window.addEventListener('storage', (event) => {
 
 - The `storage` event is not fired when `setItem()`, `removeItem()`, or `clear()` is called from the same window that made the changes.
 - The `storage` event is fired on other windows/tabs when the storage changes in the window that made the changes.
+
+# Session Storage Basics
+
+Session storage is similar to local storage, but it only stores data for one session. The data is deleted when the user closes the specific browser tab.
+
+Session storage is per origin (per protocol, host, and port). All pages, from one origin, can store and access the same data.
+
+Session storage provides at least 5MB of data storage across all major web browsers.
+
+- Allows web applications to store key-value pairs locally for a single session.
+- The data is deleted when the user closes the specific browser tab.
+
+```javascript
+// Store
+sessionStorage.setItem('color', 'mauve')
+
+// Retrieve
+const retrievedValue = sessionStorage.getItem('color')
+
+// Remove
+sessionStorage.removeItem('color')
+
+// Clear all
+sessionStorage.clear()
+```
