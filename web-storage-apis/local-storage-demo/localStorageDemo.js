@@ -22,9 +22,16 @@ function init() {
     return undefined
   }
 
-  return undefined
+  document.body.classList.remove('dark-mode')
+  button.innerText = 'Enable Dark Mode'
 }
 
 button.addEventListener('click', toggleTheme)
 
 init()
+
+window.addEventListener('storage', (e) => {
+  if (e.key === 'theme') {
+    init()
+  }
+})
