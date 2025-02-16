@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geolocation API</title>
+</head>
+
+<body>
+  <div class="container">
+    <button id="getLocation">Get Location</button>
+
+    <div id="locationDisplay">
+      Your location will appear here.
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('locationDisplay')
+
+    document.getElementById('getLocation').addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(displayGeoData, displayError, {
+          enableHighAccuracy: true
+        })
+      }
+
+    })
+
+    function displayGeoData(position) {
+      const { latitude, longitude } = position.coords
+
+      display.innerHTML = `
+        <p>Latitude: ${latitude}</p>
+        <p>Longitude: ${longitude}</p>
+      `
+    }
+
+    function displayError(error) {
+      display.innerHTML = `
+        <p>${error.message}</p>
+      `
+    }
+
+  </script>
+</body>
+
+</html>
