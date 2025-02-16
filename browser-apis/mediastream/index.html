@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediaStream Demo</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      border: 1px solid #ccc;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <button id="startStream">Start Video Stream</button>
+    <div id="errText"></div>
+    <video autoplay id="videoElement" width="640" height="480"></video>
+  </div>
+
+  <script>
+    document.getElementById('startStream').addEventListener('click', async () => {
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          // audio: true
+        })
+
+        const videoElement = document.getElementById('videoElement')
+        videoElement.srcObject = stream
+      } catch (error) {
+        document.getElementById('errText').textContent = error.message
+      }
+
+    })
+
+    navigator.mediaDevices.enumerateDevices()
+      .then(devices => {
+        devices.forEach(device => {
+          console.log(device.kind + ": " + device.label +
+            " id = " + device.deviceId);
+        })
+      }).catch(err => {
+        console.log(err.name + ": " + err.message);
+      });
+  </script>
+</body>
+
+</html>
