@@ -22,6 +22,12 @@ context.fillStyle = 'rgba(255, 0, 0,.5)'
 // // context.stroke()
 // context.fill()
 
-context.beginPath()
-context.arc(145, 145, 50, 20, 2 * Math.PI)
-context.stroke()
+// context.beginPath()
+// context.arc(145, 145, 50, 20, 2 * Math.PI)
+// context.stroke()
+
+const bigRectangle = new Path2D()
+bigRectangle.rect(0, 0, 200, 80)
+
+context.fill(bigRectangle)
+context.stroke(bigRectangle)
