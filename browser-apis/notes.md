@@ -123,3 +123,47 @@ async function getDisplayMedia() {
   getDisplayMedia()
 }
 ```
+
+## Intersection Observer API
+
+The Intersection Observer API allows you to observe changes in the intersection of a target element with an ancestor element or the viewport. It is commonly used for lazy loading images, infinite scrolling, and tracking the visibility of elements on the page.
+
+- Provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with the viewport
+
+```js
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      console.log('Element is in view:', entry.target)
+    } else {
+      console.log('Element is out of view:', entry.target)
+    }
+  })
+})
+
+const targetElement = document.querySelector('.target-element')
+observer.observe(targetElement)
+```
+
+We can also configure the observer with options such as `root`, `rootMargin`, and `threshold`:
+
+```js
+const options = {
+  root: document.querySelector('.container'),
+  rootMargin: '0px',
+  threshold: 0.5,
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      console.log('Element is in view:', entry.target)
+    } else {
+      console.log('Element is out of view:', entry.target)
+    }
+  })
+}, options)
+
+const targetElement = document.querySelector('.target-element')
+observer.observe(targetElement)
+```
