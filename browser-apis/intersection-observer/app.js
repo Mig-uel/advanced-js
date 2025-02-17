@@ -1,5 +1,5 @@
 const options = {
-  threshold: 1,
+  threshold: [0, 0.25, 0.5, 0.75, 1],
 }
 
 function observerCB(entries) {
@@ -8,7 +8,8 @@ function observerCB(entries) {
     // console.log(entry)
 
     if (entry.isIntersecting) {
-      console.log('AD IS VISIBLE')
+      const percentage = Math.round(entry.intersectionRatio * 100, 2)
+      console.log(`${percentage}% of the ad is visible`)
     } else {
       console.log('AD IS NOT VISIBLE')
     }
