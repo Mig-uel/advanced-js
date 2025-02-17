@@ -22,25 +22,47 @@
 // observer.observe(ad)
 
 /** Tracking Ad View Time */
-let adViewTimes = []
-let adVisibleStartTime
+// let adViewTimes = []
+// let adVisibleStartTime
 
+// const observer = new IntersectionObserver(
+//   (entries) => {
+//     entries.forEach((entry) => {
+//       const { isIntersecting } = entry
+
+//       if (isIntersecting) {
+//         // ad is visible
+//         adVisibleStartTime = Date.now()
+//       } else if (adVisibleStartTime) {
+//         // ad was visible, no longer is visible
+//         let adViewDuration = Date.now() - adVisibleStartTime
+//         adViewTimes.push(adViewDuration)
+
+//         console.log(`Ad was viewed for ${adViewDuration}ms`)
+
+//         adViewDuration = undefined
+//       }
+//     })
+//   },
+//   {
+//     threshold: 0.5,
+//   }
+// )
+
+// const ad = document.getElementById('ad')
+// observer.observe(ad)
+
+/** Multiple Entries */
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
+      const { id } = entry.target
       const { isIntersecting } = entry
 
       if (isIntersecting) {
-        // ad is visible
-        adVisibleStartTime = Date.now()
-      } else if (adVisibleStartTime) {
-        // ad was visible, no longer is visible
-        let adViewDuration = Date.now() - adVisibleStartTime
-        adViewTimes.push(adViewDuration)
-
-        console.log(`Ad was viewed for ${adViewDuration}ms`)
-
-        adViewDuration = undefined
+        console.log(`${id} ad is visible`)
+      } else {
+        console.log(`${id} ad is NOT visible`)
       }
     })
   },
@@ -49,5 +71,7 @@ const observer = new IntersectionObserver(
   }
 )
 
-const ad = document.getElementById('ad')
-observer.observe(ad)
+const ads = document.querySelectorAll('.ad')
+ads.forEach((ad) => {
+  observer.observe(ad)
+})
