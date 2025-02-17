@@ -167,3 +167,7 @@ const observer = new IntersectionObserver((entries) => {
 const targetElement = document.querySelector('.target-element')
 observer.observe(targetElement)
 ```
+
+- `root`: The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport if not specified.
+- `rootMargin`: Margin around the root element. Can have values similar to the CSS margin property, e.g., '10px 20px 30px 40px'. Defaults to '0px'.
+- `threshold`: A single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. Defaults to 0.
