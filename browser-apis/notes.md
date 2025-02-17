@@ -171,3 +171,5 @@ observer.observe(targetElement)
 - `root`: The element that is used as the viewport for checking visibility of the target. Defaults to the browser viewport if not specified.
 - `rootMargin`: Margin around the root element. Can have values similar to the CSS margin property, e.g., '10px 20px 30px 40px'. Defaults to '0px'.
 - `threshold`: A single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. Defaults to 0.
+  - If you only want to detect when visibility passes the 50% mark, you can use a value of 0.5.
+  - If you want to detect when visibility passes the 25%, 50%, 75%, and 100% marks, you can use an array of [0, 0.25, 0.5, 0.75, 1].
