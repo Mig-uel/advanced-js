@@ -285,3 +285,17 @@ loadAudio('audio.mp3')
 // To stop the audio source:
 // source.stop()
 ```
+
+## Canvas API
+
+The Canvas API provides a way to draw graphics on the web using JavaScript. It is commonly used for games, animations, and data visualization.
+
+- Enables drawing graphics on the web using JavaScript and the HTML `<canvas>` element
+
+```js
+const canvas = document.getElementById('canvas')
+const context = canvas.getContext('2d')
+
+context.fillStyle = 'red'
+context.fillRect(10, 10, 100, 100)
+```
