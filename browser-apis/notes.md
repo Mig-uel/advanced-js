@@ -241,3 +241,47 @@ window.addEventListener('load', () => {
 - `mark`: Performance entries related to marks set by the developer.
 - `measure`: Performance entries related to measures set by the developer.
 - `longtask`: Performance entries related to long tasks that block the main thread.
+
+## Web Audio API
+
+The Web Audio API provides a powerful and versatile system for controlling audio on the web. It is commonly used for audio processing, synthesis, and visualization.
+
+- Allows for the processing and synthesis of audio in web applications
+
+```js
+const audioContext = new AudioContext()
+const oscillator = audioContext.createOscillator()
+
+oscillator.type = 'sine'
+oscillator.frequency.setValueAtTime(440, audioContext.currentTime)
+oscillator.connect(audioContext.destination)
+oscillator.start()
+
+oscillator.stop(audioContext.currentTime + 1)
+```
+
+We can also create audio buffers from audio files:
+
+```js
+async function loadAudio(url) {
+  const response = await fetch(url)
+  const arrayBuffer = await response.arrayBuffer()
+  const audioBuffer = await audioContext.decodeAudioData(arrayBuffer)
+
+  return audioBuffer
+}
+
+loadAudio('audio.mp3')
+  .then((audioBuffer) => {
+    const source = audioContext.createBufferSource()
+    source.buffer = audioBuffer
+    source.connect(audioContext.destination)
+    source.start()
+  })
+  .catch((error) => {
+    console.error('Error loading audio:', error)
+  })
+
+// To stop the audio source:
+// source.stop()
+```
