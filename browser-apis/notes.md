@@ -215,3 +215,29 @@ measureEntries.forEach((entry) => {
   console.log(entry.name, entry.duration)
 })
 ```
+
+There are different types of performance entries such as `navigation`, `resource`, `paint`, `mark`, `measure`, and `longtask`.
+
+```js
+const navigationEntries = performance.getEntriesByType('navigation')
+const resourceEntries = performance.getEntriesByType('resource')
+const paintEntries = performance.getEntriesByType('paint')
+const markEntries = performance.getEntriesByType('mark')
+const measureEntries = performance.getEntriesByType('measure')
+const longtaskEntries = performance.getEntriesByType('longtask')
+
+window.addEventListener('load', () => {
+  resourceEntries
+    .filter((entry) => entry.initiatorType === 'img')
+    .forEach((entry) => {
+      console.log(entry.name, entry.duration)
+    })
+})
+```
+
+- `navigation`: Performance entries related to the navigation of the document.
+- `resource`: Performance entries related to resources such as images, scripts, and stylesheets.
+- `paint`: Performance entries related to paint events such as first paint and first contentful paint.
+- `mark`: Performance entries related to marks set by the developer.
+- `measure`: Performance entries related to measures set by the developer.
+- `longtask`: Performance entries related to long tasks that block the main thread.
