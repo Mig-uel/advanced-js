@@ -173,3 +173,45 @@ observer.observe(targetElement)
 - `threshold`: A single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. Defaults to 0.
   - If you only want to detect when visibility passes the 50% mark, you can use a value of 0.5.
   - If you want to detect when visibility passes the 25%, 50%, 75%, and 100% marks, you can use an array of [0, 0.25, 0.5, 0.75, 1].
+
+## Performance API
+
+The Performance API provides access to performance-related information for the current page. It is commonly used to measure the performance of web applications and identify areas for optimization.
+
+- Allows you to measure the performance of web applications
+
+```js
+const performanceEntries = performance.getEntriesByType('resource')
+
+performanceEntries.forEach((entry) => {
+  console.log(entry.name, entry.duration)
+})
+```
+
+We can also use the `PerformanceObserver` interface to observe performance entries:
+
+```js
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    console.log(entry.name, entry.duration)
+  })
+})
+
+observer.observe({ entryTypes: ['resource'] })
+```
+
+We can set up markers to measure the time between two points in the code:
+
+```js
+performance.mark('start')
+
+// Code to measure
+
+performance.mark('end')
+performance.measure('start to end', 'start', 'end')
+
+const measureEntries = performance.getEntriesByName('start to end')
+measureEntries.forEach((entry) => {
+  console.log(entry.name, entry.duration)
+})
+```
