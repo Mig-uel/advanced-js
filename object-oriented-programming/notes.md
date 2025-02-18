@@ -114,3 +114,6 @@ constructor(a, b) {
   this.b = b
 }
 ```
+
+- Constructors always return `undefined`.
+- Constructors are optional. If you do not define a constructor, JavaScript will create an empty one for you.
