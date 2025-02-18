@@ -20,6 +20,22 @@ socket.send('Hello, server!')
 
 WebSocket API is widely used in real-time applications such as chat applications, online gaming, financial trading platforms, and collaborative editing tools.
 
+## HTTP vs. WebSocket
+
+When we send an HTTP request, the client sends a request to the server, and the server responds with the requested data. This is a request-response protocol, and each request is independent of the others. HTTP is stateless, meaning it does not maintain a connection between the client and server. It's a one-time request-response cycle.
+
+WebSocket, on the other hand, provides a full-duplex communication channel over a single TCP connection, allowing real-time communication between the client and server. WebSocket is used for real-time applications where low latency and bi-directional communication are required.
+
+- **WebSocket**:
+  - Provides full-duplex communication channels over a single TCP connection.
+  - Enables real-time communication between a client and a server.
+  - Uses the ws:// or wss:// protocol.
+- **HTTP**:
+  - Is a request-response protocol.
+  - Is stateless, meaning each request is independent of the others.
+  - Is text-based, making it human-readable.
+  - Is widely used for web applications, APIs, and RESTful services.
+
 ## Long Polling vs. Polling vs. WebSocket
 
 - **Polling**: The client sends a request to the server at regular intervals to check for new data. This can lead to unnecessary requests and high latency.
