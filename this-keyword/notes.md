@@ -200,3 +200,32 @@ john.sing.call(jane) // Jane is singing LALA
 ```
 
 In the example above, we use the _`call()`_ method to call the _`sing`_ method on the _`jane`_ object.
+
+# The Apply Method
+
+The _`apply()`_ method is similar to the _`call()`_ method. The only difference is that the _`apply()`_ method takes an array of arguments instead of a list of arguments.
+
+```javascript
+const ringo = {
+  firstName: 'Ringo',
+  greet: function (greeting) {
+    console.log(`${this.firstName} says: ${greeting}!`)
+  },
+}
+
+const paul = {
+  firstName: 'Paul',
+  lastName: 'McCartney',
+}
+
+// using the call method
+ringo.greet.call(paul, 'Hello') // Paul says: Hello!
+
+// using the apply method
+ringo.greet.apply(paul, ['Hello']) // Paul says: Hello!
+```
+
+In the example above, we use the _`apply()`_ method to call the _`greet`_ method on the _`paul`_ object.
+
+- apply takes an array of arguments. In this case, we pass an array with one element, 'Hello'.
+- Each element in the array will be passed as an argument to the function.
