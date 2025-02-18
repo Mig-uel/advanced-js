@@ -61,6 +61,7 @@ console.log(myTriangle.getArea()) // 6
 Classes are a way to create objects with shared properties and methods. Classes are a blueprint for creating objects. They are a way to create objects with the same properties and methods.
 
 - Classes are created using the `class` keyword.
+- Class names are capitalized by convention. It is a way to distinguish classes from regular objects.
 - Classes have a `constructor` method that is called when a new object is created.
 - The `constructor` method is used to set up the initial state of the object.
 - Methods are defined inside the class using the `method` syntax.
@@ -88,3 +89,4 @@ const triangle1 = new Triangle(3, 4)
 - We instantiate a class using the `new` keyword.
 - The `new` keyword creates a new object and calls the `constructor` method.
 - The `new` keyword creates a new instance of the class.
+- We can still add properties and methods to individual instances of the class.
