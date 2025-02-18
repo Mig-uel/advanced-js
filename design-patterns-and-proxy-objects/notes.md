@@ -69,3 +69,34 @@ console.log(farm1 === farm2) // true
 2. **Database Connection**: A database connection is another example of a singleton. You want to have a single database connection that is shared across different parts of an application to interact with the database.
 3. **Redux Store**: In React applications that use Redux for state management, the Redux store is implemented as a singleton. It ensures that there is only one store instance that manages the application state.
 4. **Node.js Module Caching**: Node.js caches modules after the first time they are loaded, so subsequent `require` calls return the same instance of the module. This behavior is similar to the Singleton Pattern.
+
+## Singleton with ES6 Classes
+
+The Singleton Pattern can also be implemented using ES6 classes and static methods. By using a static method to create and return the instance, you can ensure that only one instance of the class is created.
+
+```js
+class DatabaseConnection {
+  constructor() {
+    if (!DatabaseConnection.instance) {
+      this.connection = this.createConnection()
+
+      DatabaseConnection.instance = this
+    }
+
+    return DatabaseConnection.instance
+  }
+
+  createConnection() {
+    // logic to create a database connection
+    console.log('Creating database connection...')
+    return 'I am a database connection object'
+  }
+}
+
+const db1 = new DatabaseConnection() // Creating database connection...
+const db2 = new DatabaseConnection() // (no output)
+
+console.log(db1 === db2) // true
+```
+
+In this example, the `DatabaseConnection` class uses a static property `instance` to store the singleton instance. The constructor checks if the instance already exists and creates it if it doesn't. The `createConnection` method is used to create the database connection.
