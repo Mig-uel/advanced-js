@@ -371,3 +371,34 @@ counter.start() // 0, 1, 2, 3, 4, ...
 ```
 
 In the example above, we use the _`bind()`_ method to bind the _`incrementAndLog`_ method to the _`counter`_ object.
+
+# Arrow Functions and _'this'_ Keyword
+
+Arrow functions do not have their own _`this`_. They inherit _`this`_ from the surrounding code.
+
+- Arrow functions don't make their own _`this`_.
+
+```javascript
+class Cat {
+  constructor(name) {
+    this.name = name
+  }
+
+  superGreet() {
+    console.log(`#1: I am ${this.name}`) // I am Tom
+
+    setTimeout(function () {
+      console.log(`#2: I am ${this.name}`) // I am undefined
+    }, 1000)
+
+    setTimeout(() => {
+      console.log(`#3: I am ${this.name}`) // I am Tom
+    }, 2000)
+  }
+}
+
+const cat = new Cat('Tom')
+cat.superGreet() // I am Tom, I am undefined, I am Tom
+```
+
+In the example above, the _`setTimeout`_ function creates its own _`this`_, which is set to the global object. To fix this issue, you can use an arrow function.
