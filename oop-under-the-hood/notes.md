@@ -41,3 +41,63 @@ const user = new User('John Doe', 'john@email.com') // { name: 'John Doe', email
 ```
 
 In the example above, the _Dog_ and _User_ functions are constructor functions. When they are invoked with the _new_ keyword, they create new objects. The _this_ keyword is set to the new object, and the properties are added to the object. The _prototype_ property of the new object points to the constructor function's prototype. The new object is then returned.
+
+## Prototypes
+
+Every JavaScript object has a prototype. A prototype is also an object. All JavaScript objects inherit their properties and methods from their prototype.
+
+When a method or property is called on an object, JavaScript will first look for that method or property on the object itself. If it doesn't find it, it will look for it on the object's prototype. If it doesn't find it there, it will look for it on the prototype's prototype, and so on, until it reaches the end of the prototype chain.
+
+The _prototype_ property of a constructor function is an object that is used to share properties and methods among all instances created with that constructor function.
+
+```javascript
+function Dog(name, breed) {
+  this.name = name
+  this.breed = breed
+
+  this.bark = function () {
+    return `${this.name} barks!`
+  }
+
+  this.sleep = function () {
+    return `${this.name} is sleeping...`
+  }
+}
+
+const buddy = new Dog('Buddy', 'Golden Retriever') // { name: 'Buddy', breed: 'Golden Retriever', bark: [Function], sleep: [Function] }
+
+const max = new Dog('Max', 'Labrador') // { name: 'Max', breed: 'Labrador', bark: [Function], sleep: [Function] }
+
+buddy.bark() // 'Buddy barks!'
+max.bark() // 'Max barks!'
+```
+
+In the example above, the _bark_ and _sleep_ methods are added to the _Dog_ constructor function. When a new object is created using the _Dog_ constructor function, the _bark_ and _sleep_ methods are added to the object. This is not ideal because each object has its own copy of the _bark_ and _sleep_ methods, which is inefficient.
+
+To share methods among all instances created with the _Dog_ constructor function, we can add the methods to the _Dog_ constructor function's prototype.
+
+```javascript
+function Dog(name, breed) {
+  this.name = name
+  this.breed = breed
+}
+
+Dog.prototype.bark = function () {
+  return `${this.name} barks!`
+}
+
+Dog.prototype.sleep = function () {
+  return `${this.name} is sleeping...`
+}
+
+const buddy = new Dog('Buddy', 'Golden Retriever') // { name: 'Buddy', breed: 'Golden Retriever' }
+
+const max = new Dog('Max', 'Labrador') // { name: 'Max', breed: 'Labrador' }
+
+buddy.bark() // 'Buddy barks!'
+max.bark() // 'Max barks!'
+
+buddy.bark === max.bark // true
+```
+
+In the example above, the _bark_ and _sleep_ methods are added to the _Dog_ constructor function's prototype. When a new object is created using the _Dog_ constructor function, the _bark_ and _sleep_ methods are shared among all instances created with the _Dog_ constructor function.
