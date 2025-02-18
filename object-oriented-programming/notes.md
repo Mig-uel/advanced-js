@@ -285,3 +285,27 @@ Cat.meow() // Meow!
 - `this` inside a static method refers to the class itself, not an instance of the class.
 - Almost every other OOP language more properly calls these "class methods" not "static methods" - since it does have access to the class itself.
 - More consistent OOP languages like C++, Java, and Python, also have true static methods, where the method does not have access to the class itself.
+
+## Getters
+
+Getters are methods that are called when a property is accessed. They are defined using the `get` keyword.
+
+- Getters are methods that are called when a property is accessed.
+- Getters are defined using the `get` keyword.
+- Getters are called without parentheses.
+- Allow you to access a property as if it were a property, but it is actually a method.
+
+```js
+class Circle {
+  constructor(radius) {
+    this.radius = radius
+  }
+
+  get area() {
+    return Math.PI * this.radius ** 2
+  }
+}
+
+const circle1 = new Circle(5)
+circle1.area // 78.54
+```
