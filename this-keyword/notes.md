@@ -30,7 +30,8 @@ const person = {
   },
 }
 
-const pFullName = person.fullName // does not work
+const pFullName = person.fullName
+console.log(pFullName()) // undefined undefined
 ```
 
 In the example above, _`this`_ refers to the _`person`_ object when used inside the _`fullName`_ method. However, when we assign the _`person.fullName`_ method to a variable, _`this`_ no longer refers to the _`person`_ object.
@@ -51,3 +52,23 @@ console.log(pFullName()) // John Doe
 ```
 
 In the example above, we bind the _`this`_ value to the _`person`_ object using the _`bind()`_ method.
+
+```javascript
+class Cat {
+  constructor(firstName) {
+    this.firstName = firstName
+  }
+
+  dance(style = 'salsa') {
+    console.log(`${this.firstName} is dancing ${style}`)
+  }
+}
+
+const cat = new Cat('Tom')
+cat.dance() // Tom is dancing salsa
+
+const fDance = cat.dance
+fDance() // TypeError: Cannot read property 'firstName' of undefined
+```
+
+In the example above, _`this`_ refers to the _`cat`_ object when used inside the _`dance`_ method. However, when we assign the _`cat.dance`_ method to a variable, _`this`_ no longer refers to the _`cat`_ object.
