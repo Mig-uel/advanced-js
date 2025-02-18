@@ -217,6 +217,65 @@ buddy.speak() // 'Buddy makes a noise.'
 
 In the example above, the _Dog_ class extends the _Animal_ class. When the _Dog_ class is defined, JavaScript creates a constructor function for the _Dog_ class and sets the _Dog_ class's prototype to an instance of the _Animal_ class.
 
+## Useful Prototype Methods
+
+- _Object.create()_: The _Object.create()_ method creates a new object with the specified prototype object and properties.
+
+```js
+const person = {
+  sing() {
+    return 'La la la...'
+  },
+  isHuman: true,
+}
+
+const john = Object.create(person)
+```
+
+- _Object.getPrototypeOf()_: The _Object.getPrototypeOf()_ method returns the prototype of the specified object.
+
+```js
+const person = {
+  sing() {
+    return 'La la la...'
+  },
+  isHuman: true,
+}
+
+const john = Object.create(person)
+Object.getPrototypeOf(john) === person // true
+```
+
+- _Object.setPrototypeOf()_: The _Object.setPrototypeOf()_ method sets the prototype of a specified object to another object or null.
+
+```js
+const person = {
+  sing() {
+    return 'La la la...'
+  },
+  isHuman: true,
+}
+
+const john = {}
+
+Object.setPrototypeOf(john, person)
+```
+
+- _isPrototypeOf()_: The _isPrototypeOf()_ method checks if an object exists in another object's prototype chain.
+
+```js
+const person = {
+  sing() {
+    return 'La la la...'
+  },
+  isHuman: true,
+}
+
+const john = Object.create(person)
+
+person.isPrototypeOf(john) // true
+```
+
 ## Conclusion
 
 - JavaScript did not always have classes. It was introduced in ES6 (ECMAScript 2015). Before ES6, JavaScript used prototype-based inheritance.
@@ -226,3 +285,7 @@ In the example above, the _Dog_ class extends the _Animal_ class. When the _Dog_
 - When a class is defined, JavaScript creates a constructor function and adds methods to the constructor function's prototype.
 - Classes can also extend other classes. When a class extends another class, JavaScript
   creates a constructor function for the subclass and sets the subclass's prototype to an instance of the superclass.
+
+```
+
+```
