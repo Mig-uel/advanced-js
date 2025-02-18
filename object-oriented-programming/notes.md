@@ -309,3 +309,35 @@ class Circle {
 const circle1 = new Circle(5)
 circle1.area // 78.54
 ```
+
+## Setters
+
+Setters are methods that are called when a property is set. They are defined using the `set` keyword.
+
+- Setters are methods that are called when a property is set.
+- Setters are defined using the `set` keyword.
+- Setters are called without parentheses.
+- Allow you to set a property as if it were a property, but it is actually a method.
+
+```js
+class Circle {
+  constructor(radius) {
+    this.radius = radius
+  }
+
+  get area() {
+    return Math.PI * this.radius ** 2
+  }
+
+  set radius(value) {
+    if (value <= 0) {
+      throw new Error('Invalid radius')
+    }
+
+    this.radius = value
+  }
+}
+
+const circle1 = new Circle(5)
+circle1.radius = 10
+```
