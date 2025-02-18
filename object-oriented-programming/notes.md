@@ -231,3 +231,24 @@ triangle1.getHypotenuse() // 5
 - The `super` keyword is used to call the constructor of the superclass.
 - The `super` keyword is used to call methods on the superclass.
 - The subclass can override the properties and methods of the superclass.
+
+## Static Properties
+
+Static properties are properties that are shared between all instances of a class. They are defined on the class itself, not on the instances of the class.
+
+- Static properties are defined using the `static` keyword.
+- Static properties are shared between all instances of the class.
+
+```js
+class Cat {
+  static species = 'felis catus'
+
+  constructor(name, breed) {
+    this.name = name
+    this.breed = breed
+  }
+}
+
+const cat1 = new Cat('Whiskers', 'Siamese')
+Cat.species // felis catus
+```
