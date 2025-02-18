@@ -72,3 +72,21 @@ fDance() // TypeError: Cannot read property 'firstName' of undefined
 ```
 
 In the example above, _`this`_ refers to the _`cat`_ object when used inside the _`dance`_ method. However, when we assign the _`cat.dance`_ method to a variable, _`this`_ no longer refers to the _`cat`_ object.
+
+# Global Object and _'this'_
+
+In a sense, JavaScript doesn't have functions. Everything is called on something, like a method. If you call a function without a context, it is called on the global object. In the browser, the global object is _`window`_.
+
+```javascript
+function greet() {
+  return 'Hi'
+}
+
+console.log(greet()) // Hi
+console.log(window.greet()) // Hi
+```
+
+When you call a function on nothing, it is called on the global object.
+The global object depends on the environment. In the browser, it is _`window`_. In Node.js, it is _`global`_. In a web worker, it is _`self`_.
+
+The value of the keyword _`this`_ depends on the context in which it is used.
