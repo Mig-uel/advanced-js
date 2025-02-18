@@ -1,4 +1,5 @@
 const express = require('express')
+const ChatUser = require('./ChatUser')
 const app = express()
 
 // serve static folder
@@ -18,9 +19,32 @@ app.use(express.static('static'))
 // allow for app.ws routes for websocket routes
 const wsExpress = require('express-ws')(app)
 app.ws('/chat/:room', (ws, req, next) => {
-  setInterval(() => {
-    ws.send(req.params.room)
-  }, 2000)
+  try {
+    const user = new ChatUser(
+      ws.send.bind(ws), // fn to call to message this user
+      req.params.room // name of room for user
+    )
+
+    // register handlers for message-received, connection closed
+
+    ws.on('message', function (data) {
+      try {
+        user.handleMessage(data)
+      } catch (error) {
+        console.error(error)
+      }
+    })
+
+    ws.on('close', function () {
+      try {
+        user.handleClose()
+      } catch (error) {
+        console.error(error)
+      }
+    })
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 /** Chat Route */
