@@ -326,3 +326,102 @@ user.login({ username: 'john_doe', password: 'password' })
 In the refactored code, the `User` class depends on the `AbstractAuthMethod` abstraction, not a specific implementation. This way, you can add new authentication methods (like Google or Facebook) without modifying the `User` class.
 
 By using DIP in our authentication example, the User class doesn't need to change every time we introduce a new way to authenticate. We just create a new class extending AbstractAuthMethod and pass it to the User class. This abstraction ensures that our main logic remains stable and unaffected by changes in lower-level modules (different authentication mechanism).
+
+## Law of Demeter (LoD)
+
+The Law of Demeter (LoD) is a design guideline for developing software that aims to reduce coupling between classes. It states that a module should not know about the internal details of the objects it manipulates. Instead, it should only interact with its immediate friends.
+
+The main idea is to ensure that our objects don't reveal too much about their structure or their collaborators' structures. This helps to reduce the complexity of our code and makes it easier to maintain and extend.
+
+The Law of Demeter is often summarized as "talk only to your immediate friends." In other words, an object should only call methods on:
+
+- Itself
+- Its parameters
+- Objects it creates
+- Its direct component objects
+
+Consider a scenario where cats have a favorite toy and each toy has a color.
+If someone wants to know about the color of the cat's favorite toy, it would be inappropriate for them to directly inquire about the toy's color from the cat object.
+
+```js
+class Wallet {
+  constructor(money) {
+    this.money = money
+  }
+
+  getMoney() {
+    return this.money
+  }
+}
+
+const Person {
+  constructor(wallet) {
+    this.wallet = wallet
+  }
+
+  getWallet() {
+    return this.wallet
+  }
+}
+
+class ShoppingMall {
+  chargeCustomer(person, amount) {
+    const wallet = person.getWallet()
+    const money = wallet.getMoney()
+
+    wallet.money = money - amount // this is a violation of the Law of Demeter
+  }
+}
+
+let wallet = new Wallet(100)
+let person = new Person(wallet)
+let mall = new ShoppingMall()
+
+mall.chargeCustomer(person, 50)
+```
+
+In the example above, the `ShoppingMall` class violates the Law of Demeter because it directly accesses the `money` property of the `Wallet` object through the `Person` object. Instead, the `ShoppingMall` class should only interact with its immediate friends (its parameters).
+
+We can refactor the code to follow the Law of Demeter:
+
+```js
+class Wallet {
+  constructor(money) {
+    this.money = money
+  }
+
+  debit(amount) {
+    this.money -= amount
+  }
+
+  getMoney() {
+    return this.money
+  }
+}
+
+class Person {
+  constructor(wallet) {
+    this.wallet = wallet
+  }
+
+  pay(amount) {
+    this.wallet.debit(amount)
+  }
+}
+
+class ShoppingMall {
+  chargeCustomer(person, amount) {
+    person.pay(amount)
+  }
+}
+
+let wallet = new Wallet(100)
+let person = new Person(wallet)
+let mall = new ShoppingMall()
+
+mall.chargeCustomer(person, 50)
+```
+
+In the refactored code, the `ShoppingMall` class no longer violates the Law of Demeter because it only interacts with its immediate friends (the `Person` object). The `Person` object, in turn, interacts with its immediate friend (the `Wallet` object) to perform the required operation.
+
+By following the Law of Demeter, we can reduce the coupling between classes and make our code more maintainable and easier to understand.
