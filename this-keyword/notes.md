@@ -120,3 +120,29 @@ obj.whatIsThis() // obj: { color: 'red', age: 42, whatIsThis: [Function: whatIsT
 ```
 
 In the example above, _`this`_ is equal to _`obj`_ because _`obj`_ is left of the dot when the function is called.
+
+# _'this'_ And Classes
+
+In classes, _`this`_ refers to the object that is created from the class.
+
+```javascript
+class Cat {
+  constructor(name) {
+    this.name = name
+  }
+
+  speak() {
+    console.log(`${this.name} says meow`)
+  }
+}
+
+const cat = new Cat('Tom')
+cat.speak() // Tom says meow
+
+const fSpeak = cat.speak
+fSpeak() // TypeError: Cannot read property 'name' of undefined
+```
+
+In this example, when we assign the _`cat.speak`_ method to a variable, _`this`_ no longer refers to the _`cat`_ object but to _undefined_.
+When you call a function on nothing, but the function comes from inside a class, _`this`_ will be _undefined_, not the global object.
+_`this`_ loses its context when you assign a method to a variable.
