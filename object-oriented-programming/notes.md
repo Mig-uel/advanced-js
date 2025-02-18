@@ -341,3 +341,33 @@ class Circle {
 const circle1 = new Circle(5)
 circle1.radius = 10
 ```
+
+## Public Fields
+
+Public fields are properties that are defined outside of the constructor. They are defined using the `=` syntax.
+
+- Public fields are properties that are defined outside of the constructor.
+- Public fields are defined using the `=` syntax.
+- Public fields are shared between all instances of the class.
+
+```js
+class Movie {
+  title = 'Unknown'
+  year = 2021
+  rating
+
+  constructor() {
+    this.rating = 0
+  }
+}
+
+const movie1 = new Movie()
+movie1.title // Unknown
+movie1.year // 2021
+```
+
+Benefits of public fields:
+
+- Easier to read and write.
+- Less boilerplate code.
+- Shared between all instances of the class.
