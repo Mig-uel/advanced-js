@@ -22,3 +22,36 @@ obj1['name'] = 'John'
 - Values can be any data type, including other objects.
 - Properties that do not exist on an object will return `undefined`.
 
+## Mixing Data and Functions in Objects
+
+Objects can store data and functions together. Functions stored on an object are called methods.
+
+Using a POJO:
+
+- Data is stored in key-value pairs.
+- Related functionality is stored together.
+- Annoying when we have to create multiple objects with the same properties and methods.
+  - Difficult to maintain and update.
+  - If we have 1000 objects, we have to update 1000 objects.
+
+```js
+// Plain Old JavaScript Object (POJO)
+let myTriangle = {
+  a: 3,
+  b: 4,
+
+  // Method
+  getArea: function () {
+    return 0.5 * this.a * this.b
+  },
+
+  getHypotenuse: function () {
+    return Math.sqrt(this.a ** 2 + this.b ** 2)
+  },
+}
+
+console.log(myTriangle.getArea()) // 6
+```
+
+- `this` refers to the object that the method is called on.
+- Arrow functions do not have their own `this` context, so they are not suitable for object methods.
