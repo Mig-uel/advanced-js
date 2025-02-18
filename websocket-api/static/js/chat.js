@@ -1,13 +1,13 @@
 // CLIENT-SIDE JS
 
 // Open WebSocket connection from the browser to the server
-const socket = new WebSocket(`ws://localhost:3000/chat/people`)
+const url = document.URL.split('/')
+const room = url.at(-1)
+const socket = new WebSocket(`ws://localhost:3000/chat/${room}`)
 let username = prompt('Enter your username:')
 
 // onopen event
 socket.onopen = function (e) {
-  console.log('WebSocket Opened')
-
   const data = { type: 'join', name: username }
   socket.send(JSON.stringify(data))
 }
