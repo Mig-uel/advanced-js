@@ -151,3 +151,68 @@ child.greet() // 'Hello!'
 ```
 
 In the example above, the _child_ object has a prototype chain that includes the _parent_ and _grandparent_ objects. When a property or method is called on the _child_ object, JavaScript will first look for it on the _child_ object itself. If it doesn't find it, it will look for it on the _parent_ object. If it doesn't find it there, it will look for it on the _grandparent_ object.
+
+## Classes, Inheritance, and Prototypes
+
+Classes in JavaScript are syntactic sugar for prototype-based inheritance. Under the hood, classes are still using prototypes.
+
+When a class is defined, JavaScript creates a constructor function and adds methods to the constructor function's prototype.
+
+```javascript
+class Dog {
+  constructor(name, breed) {
+    this.name = name
+    this.breed = breed
+  }
+
+  bark() {
+    return `${this.name} barks!`
+  }
+
+  sleep() {
+    return `${this.name} is sleeping...`
+  }
+}
+
+const buddy = new Dog('Buddy', 'Golden Retriever') // { name: 'Buddy', breed: 'Golden Retriever' }
+
+const max = new Dog('Max', 'Labrador') // { name: 'Max', breed: 'Labrador' }
+
+buddy.bark() // 'Buddy barks!'
+max.bark() // 'Max barks!'
+```
+
+In the example above, the _Dog_ class is defined with a constructor and two methods. When the _Dog_ class is defined, JavaScript creates a constructor function and adds the _bark_ and _sleep_ methods to the constructor function's prototype.
+
+Classes can also extend other classes. When a class extends another class, JavaScript
+creates a constructor function for the subclass and sets the subclass's prototype to an instance of the superclass.
+
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name
+  }
+
+  speak() {
+    return `${this.name} makes a noise.`
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name)
+    this.breed = breed
+  }
+
+  bark() {
+    return `${this.name} barks!`
+  }
+}
+
+const buddy = new Dog('Buddy', 'Golden Retriever') // { name: 'Buddy', breed: 'Golden Retriever' }
+
+buddy.bark() // 'Buddy barks!'
+buddy.speak() // 'Buddy makes a noise.'
+```
+
+In the example above, the _Dog_ class extends the _Animal_ class. When the _Dog_ class is defined, JavaScript creates a constructor function for the _Dog_ class and sets the _Dog_ class's prototype to an instance of the _Animal_ class.
