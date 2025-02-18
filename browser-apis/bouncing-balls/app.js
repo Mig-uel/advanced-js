@@ -46,6 +46,10 @@ class Ball {
 
     this.x += this.x_velocity
     this.y += this.y_velocity
+
+    if (this.y + this.size < canvas.height) {
+      this.y_velocity += 0.2
+    }
   }
 }
 
@@ -68,5 +72,6 @@ canvas.addEventListener('click', (e) => {
 
   const ball = new Ball(cords.x, cords.y)
   balls.push(ball)
-  loop()
 })
+
+loop()
