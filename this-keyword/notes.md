@@ -179,3 +179,24 @@ In the example above, we use the _`call()`_ method to call the _`dance`_ method 
 
 - The first argument is the value of _`this`_.
 - The second argument is the argument that you want to pass to the function.
+
+```javascript
+const john = {
+  name: 'John',
+  city: 'New York',
+  sing: function (song) {
+    console.log(`${this.name} is singing LALA`)
+  },
+}
+
+const jane = {
+  name: 'Jane',
+  city: 'San Francisco',
+}
+
+john.sing() // John is singing LALA
+
+john.sing.call(jane) // Jane is singing LALA
+```
+
+In the example above, we use the _`call()`_ method to call the _`sing`_ method on the _`jane`_ object.
