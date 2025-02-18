@@ -190,3 +190,68 @@ AreaCalculator.calculateAll([circle, square, rectangle]) // 112.54
 ```
 
 In the refactored code, the `AreaCalculator` class is open for extension because we can add new shape types by creating new subclasses of the `Shape` class. The `AreaCalculator` class is closed for modification because we don't need to modify its code when adding new shape types.
+
+### L - Liskov Substitution Principle (LSP)
+
+Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program.
+
+If `S` is a subtype of `T`, then objects of type `T` may be replaced with objects of type `S` without altering any of the desirable properties of the program.
+
+```js
+class Bird {
+  fly() {
+    console.log('This bird can fly')
+  }
+}
+
+class Duck extends Bird {
+  fly() {
+    console.log('Duck can fly')
+  }
+}
+
+class Eagle extends Bird {
+  fly() {
+    console.log('Eagle can fly')
+  }
+}
+
+function makeBirdFly(bird) {
+  bird.fly()
+}
+
+const duck = new Duck()
+const eagle = new Eagle()
+
+makeBirdFly(duck) // Duck can fly
+makeBirdFly(eagle) // Eagle can fly
+```
+
+In the example above, the `makeBirdFly` function does not violate the LSP because we can replace the `Bird` object with its subclasses (`Duck` and `Eagle`) without affecting the correctness of the program.
+
+### I - Interface Segregation Principle (ISP)
+
+A client should not be forced to implement an interface that it does not use. Instead of one fat interface, many small interfaces are preferred based on groups of methods, each one serving one submodule.
+
+JavaScript does not have interfaces like Java or TypeScript, but the principle still applies conceptually using duck typing (if it looks like a duck and quacks like a duck, it must be a duck) or optional methods.
+
+```js
+class Worker {
+  work() {
+    console.log('Working on work')
+  }
+  eat() {
+    console.log('Eating some food')
+  }
+  sleep() {
+    console.log('Sleeping')
+  }
+}
+
+// function only needs the work method
+function manageWork(worker) {
+  worker.work()
+}
+```
+
+In the example above, the `manageWork` function does not violate the ISP because it only needs the `work` method from the `Worker` class. The `Worker` class has three methods (`work`, `eat`, and `sleep`), but the `manageWork` function only uses the `work` method.
