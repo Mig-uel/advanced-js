@@ -2,7 +2,7 @@
 
 // Open WebSocket connection from the browser to the server
 const socket = new WebSocket(`ws://localhost:3000/chat/people`)
-const username = prompt('Enter your username:')
+let username = prompt('Enter your username:')
 
 // onopen event
 socket.onopen = function (e) {
@@ -24,6 +24,11 @@ socket.onmessage = (e) => {
     item.appendChild(text)
 
     document.querySelector('#messages').appendChild(item)
+  } else if (msg.type === 'chat') {
+    const item = document.createElement('li')
+    item.innerHTML = `<b>${msg.name}:</b> ${msg.text}`
+
+    document.querySelector('#messages').appendChild(item)
   }
 }
 
@@ -36,3 +41,17 @@ socket.onerror = function (e) {
 socket.onclose = function (e) {
   console.log('WebSocket has closed...')
 }
+
+const form = document.querySelector('form')
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  const input = form.querySelector('#message')
+
+  const payload = { type: 'chat', text: input.value }
+
+  socket.send(JSON.stringify(payload))
+
+  input.value = ''
+})
