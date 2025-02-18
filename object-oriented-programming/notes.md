@@ -436,3 +436,35 @@ Benefits of private methods:
 - Encapsulate functionality and prevent it from being accessed from outside the class.
 - Prevent accidental modification of data.
 - Improve code quality and maintainability.
+
+## Static Initialization Blocks
+
+Static initialization blocks are blocks of code that are executed when a class is loaded. They are defined using the `static` keyword.
+
+- Static initialization blocks are blocks of code that are executed when a class is loaded.
+- Static initialization blocks are defined using the `static` keyword.
+- Static initialization blocks are executed only once when the class is loaded.
+
+```js
+class DatabaseConnection {
+  static connection
+
+  static {
+    if (process.env.NODE_ENV === 'production') {
+      this.loadProductionConnection()
+    } else {
+      this.loadDevelopmentConnection()
+    }
+  }
+
+  static loadProductionConnection() {}
+
+  static loadDevelopmentConnection() {}
+}
+```
+
+Benefits of static initialization blocks:
+
+- Execute code when a class is loaded.
+- Initialize static properties.
+- Load configuration settings.
