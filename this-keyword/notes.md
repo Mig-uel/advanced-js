@@ -254,6 +254,7 @@ const jane = {
 }
 
 const janeSing = john.sing.bind(jane)
+janeSing() // Jane is singing LALA
 ```
 
 In the example above, we use the _`bind()`_ method to bind the _`sing`_ method to the _`jane`_ object.
