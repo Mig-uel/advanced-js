@@ -276,3 +276,47 @@ In the example above, we use the _`bind()`_ method to bind the _`taxRate`_ argum
 
 - The first argument is the value of _`this`_. In this case, we don't need to bind _`this`_, so we pass _`null`_.
 - The second argument is the value of the _`taxRate`_ argument.
+
+# Bind and Event Listeners
+
+The _`bind()`_ method is often used to bind event listeners to elements. When you do not directly call functions and instead JavaScript calls them, a keyword _`this`_ is created for you.
+
+- Event listeners are called by the browser, not by you.
+- Timers are called by the browser, not by you.
+- Callbacks are called by the browser, not by you.
+
+```javascript
+const john = {
+  name: 'John',
+  city: 'New York',
+  sing: function () {
+    console.log(`${this.name} is singing LALA`)
+  },
+}
+
+const button = document.getQuerySelector('button')
+
+button.addEventListener('click', john.sing) // JavaScript is setting the context to the button
+```
+
+In the example above, when the button is clicked, the _`sing`_ method is called, but _`this`_ is set to the button, not the _`john`_ object.
+
+To fix this issue, you can use the _`bind()`_ method.
+
+```javascript
+const john = {
+  name: 'John',
+  city: 'New York',
+  sing: function () {
+    console.log(`${this.name} is singing LALA`)
+  },
+}
+
+const button = document.getQuerySelector('button')
+
+button.addEventListener('click', john.sing.bind(john))
+```
+
+In the example above, we use the _`bind()`_ method to bind the _`sing`_ method to the _`john`_ object.
+
+- The _`bind()`_ method creates a new function that, when called, has its _`this`_ keyword set to the provided value.
