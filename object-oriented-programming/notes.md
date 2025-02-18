@@ -389,10 +389,15 @@ class Circle {
   constructor(radius) {
     this.#radius = radius
   }
+
+  get radius() {
+    return this.#radius
+  }
 }
 
 const circle1 = new Circle(5)
 circle1.#radius // SyntaxError
+circle1.radius // 5
 ```
 
 Benefits of private fields:
