@@ -117,3 +117,41 @@ constructor(a, b) {
 
 - Constructors always return `undefined`.
 - Constructors are optional. If you do not define a constructor, JavaScript will create an empty one for you.
+
+## Bank Account Example
+
+```js
+class BankAccount {
+  constructor(accountNumber, accountHolder, balance = 0) {
+    this.accountNumber = accountNumber
+    this.accountHolder = accountHolder
+    this.balance = balance
+  }
+
+  deposit(amount) {
+    if (amount <= 0) {
+      throw new Error('Invalid amount')
+    }
+
+    this.balance += amount
+
+    return `Deposit successful. New balance: ${this.balance}`
+  }
+
+  withdraw(amount) {
+    if (amount <= 0) {
+      throw new Error('Invalid amount')
+    } else if (amount > this.balance) {
+      throw new Error('Insufficient funds')
+    }
+
+    this.balance -= amount
+
+    return `Withdrawal successful. New balance: ${this.balance}`
+  }
+}
+
+const account1 = new BankAccount('123abc', 'John Doe', 100)
+account1.deposit(50) // 150
+account1.withdraw(25) // 125
+```
