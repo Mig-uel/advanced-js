@@ -25,3 +25,8 @@ ChickenModule.makeSound() // Cluck!
 
 - The module pattern is useful for creating singletons, as it only creates one instance of the object.
 - It can be used to create private variables and methods that are not accessible from the outside.
+
+## Real-World Examples of the Module Pattern
+
+1. **jQuery**: jQuery uses the module pattern to encapsulate its methods and properties. It creates a single object that contains all the jQuery methods and properties, preventing conflicts with other libraries or code.
+2. **Node.js Modules/RequireJS**: Node.js uses the module pattern to create modules that can be imported and used in other files. Each module is encapsulated in its own scope, preventing conflicts with other modules.
