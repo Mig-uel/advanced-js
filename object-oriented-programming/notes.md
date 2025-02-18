@@ -95,3 +95,22 @@ const triangle1 = new Triangle(3, 4)
 ```js
 console.log(triangle1 instanceof Triangle) // true
 ```
+
+## What Can You Do In The Constructor?
+
+- Set up the initial state of the object.
+- Assign properties to the object.
+- Call methods on the object.
+- Create new objects and assign them to properties.
+- Validate the input to the constructor.
+
+```js
+constructor(a, b) {
+  if (!Number.isFinite(a) || !Number.isFinite(b)) {
+    throw new Error('Invalid input')
+  }
+
+  this.a = a
+  this.b = b
+}
+```
