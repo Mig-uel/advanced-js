@@ -155,3 +155,32 @@ const account1 = new BankAccount('123abc', 'John Doe', 100)
 account1.deposit(50) // 150
 account1.withdraw(25) // 125
 ```
+
+## Class Instance Methods
+
+Class instance methods are methods that are called on an instance of a class. They are defined inside the class and are shared between all instances of the class.
+
+- Instance methods are called on an instance of the class.
+- Instance methods can access the properties of the instance using `this`.
+- Instance methods can call other instance methods on the same instance.
+
+```js
+class Triangle {
+  constructor(a, b) {
+    this.a = a
+    this.b = b
+  }
+
+  getArea() {
+    return 0.5 * (this.a * this.b)
+  }
+
+  getHypotenuse() {
+    return Math.sqrt(this.a ** 2 + this.b ** 2)
+  }
+}
+
+const triangle1 = new Triangle(3, 4)
+triangle1.getArea() // 6
+triangle1.getHypotenuse() // 5
+```
