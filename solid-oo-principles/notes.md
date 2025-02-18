@@ -1,0 +1,97 @@
+## SOLID Object-Oriented Design Principles
+
+SOLID is a set of five principles that help us design well-structured, maintainable, and scalable object-oriented software. These principles were introduced by Robert C. Martin in the early 2000s.
+
+Who is Robert C. Martin? He is a software engineer and author of the book "Clean Code: A Handbook of Agile Software Craftsmanship".
+
+### S - Single Responsibility Principle (SRP)
+
+A class should have only one reason to change, meaning that a class should have only one job or responsibility.
+
+```js
+class User {
+  constructor(name) {
+    this.name = name
+  }
+
+  toJSON() {
+    return JSON.stringify(this)
+  }
+}
+```
+
+In the example above, the `User` class has two responsibilities: storing the user's name and converting the user object to a JSON string. We can refactor the class to follow the SRP:
+
+```js
+class User {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+class UserSerializer {
+  static toJSON(user) {
+    return JSON.stringify(user)
+  }
+}
+```
+
+Another example:
+
+```js
+class User {
+  constructor(username, password) {
+    this.username = username
+    this.password = password
+  }
+
+  // handles user authentication
+  authenticate(inputPassword) {
+    // imagine some authentication logic here
+    return this.password === inputPassword
+  }
+
+  // saves the user to the database
+  save() {
+    // imagine some database logic here
+    db.saveUser(this)
+  }
+}
+
+const user = new User('john_doe', 'password')
+if (user.authenticate('password')) {
+  user.save()
+}
+```
+
+In the example above, the `User` class has two responsibilities: user authentication and saving the user to the database. We can refactor the class to follow the SRP:
+
+```js
+class User {
+  constructor(username, password) {
+    this.username = username
+    this.password = password
+  }
+
+  // handles user authentication
+  authenticate(inputPassword) {
+    // imagine some authentication logic here
+    return this.password === inputPassword
+  }
+}
+
+class UserDataManager {
+  static save(user) {
+    // assume this function gives a db connection
+    const db = getDbConnection()
+    db.saveUser(user)
+  }
+}
+
+const user = new User('john_doe', 'password')
+if (user.authenticate('password')) {
+  UserDataManager.save(user)
+}
+```
+
+In the refactored code, each class has a single responsibility: `User` class handles user authentication, and `UserDataManager` class saves the user to the database. Each class has only one reason to change.
