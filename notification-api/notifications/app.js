@@ -4,6 +4,7 @@ async function showNotification() {
   if (permission === 'granted') {
     const notification = new Notification('My First Notification', {
       body: 'This is the body of my first notification.',
+      icon: './dice-icon.png',
     })
 
     notification.addEventListener('click', (e) => {
