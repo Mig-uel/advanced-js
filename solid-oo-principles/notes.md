@@ -255,3 +255,74 @@ function manageWork(worker) {
 ```
 
 In the example above, the `manageWork` function does not violate the ISP because it only needs the `work` method from the `Worker` class. The `Worker` class has three methods (`work`, `eat`, and `sleep`), but the `manageWork` function only uses the `work` method.
+
+### D - Dependency Inversion Principle (DIP)
+
+High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
+
+High-level modules (main application logic) should not depend directly on low-level modules (like specific tools or libraries). Instead, both should depend on abstractions (interfaces or abstract classes).
+
+JavaScript Example:
+
+Imagine you're building an application where users can sign in. Initially, users sign in using email and password.
+But in the future, you want to add the ability to sign in using Google, Facebook, or other social media accounts.
+If you tightly couple the sign-in logic with the email and password, you'll have to modify the sign-in logic whenever you add a new sign-in method.
+
+```js
+class UsernamePasswordAuth {
+  authenticate(username, password) {
+    // authenticate using username and password
+  }
+}
+
+class User {
+  login(user, password) {
+    const auth = new UsernamePasswordAuth()
+    return auth.authenticate(user, password)
+  }
+}
+```
+
+In the example above, the `User` class violates the DIP because it depends on the `UsernamePasswordAuth` class directly. We can refactor the code to follow the DIP:
+
+You create an abstract AuthMethod class and ensure that your main User class depends on this abstraction, not a specific implementation. This way, adding a new authentication method (like Google or Facebook) won't require modifying the User class.
+
+```js
+// abstract authentication method
+class AbstractAuthMethod {
+  authenticate(credentials) {
+    throw new Error('authenticate method must be implemented')
+  }
+}
+
+class UsernamePasswordAuth extends AbstractAuthMethod {
+  authenticate({ username, password }) {
+    // authenticate using username and password
+  }
+}
+
+class GoogleAuth extends AbstractAuthMethod {
+  authenticate({ email, token }) {
+    // authenticate using Google token
+  }
+}
+
+class User {
+  constructor(authMethod) {
+    if (!(authMethod instanceof AbstractAuthMethod))
+      throw new Error('authMethod must be an instance of AbstractAuthMethod')
+
+    this.authMethod = authMethod
+  }
+
+  login(credentials) {
+    return this.authMethod.authenticate(credentials)
+}
+
+const user = new User(new UsernamePasswordAuth())
+user.login({ username: 'john_doe', password: 'password' })
+```
+
+In the refactored code, the `User` class depends on the `AbstractAuthMethod` abstraction, not a specific implementation. This way, you can add new authentication methods (like Google or Facebook) without modifying the `User` class.
+
+By using DIP in our authentication example, the User class doesn't need to change every time we introduce a new way to authenticate. We just create a new class extending AbstractAuthMethod and pass it to the User class. This abstraction ensures that our main logic remains stable and unaffected by changes in lower-level modules (different authentication mechanism).
