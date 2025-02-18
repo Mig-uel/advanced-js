@@ -55,3 +55,36 @@ console.log(myTriangle.getArea()) // 6
 
 - `this` refers to the object that the method is called on.
 - Arrow functions do not have their own `this` context, so they are not suitable for object methods.
+
+## Classes
+
+Classes are a way to create objects with shared properties and methods. Classes are a blueprint for creating objects. They are a way to create objects with the same properties and methods.
+
+- Classes are created using the `class` keyword.
+- Classes have a `constructor` method that is called when a new object is created.
+- The `constructor` method is used to set up the initial state of the object.
+- Methods are defined inside the class using the `method` syntax.
+- Methods are shared between all objects created from the class.
+
+```js
+class Triangle {
+  constructor(a, b) {
+    this.a = a
+    this.b = b
+  }
+
+  getArea() {
+    return 0.5 * (this.a * this.b)
+  }
+
+  getHypotenuse() {
+    return Math.sqrt(this.a ** 2 + this.b ** 2)
+  }
+}
+
+const triangle1 = new Triangle(3, 4)
+```
+
+- We instantiate a class using the `new` keyword.
+- The `new` keyword creates a new object and calls the `constructor` method.
+- The `new` keyword creates a new instance of the class.
