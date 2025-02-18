@@ -90,3 +90,8 @@ const triangle1 = new Triangle(3, 4)
 - The `new` keyword creates a new object and calls the `constructor` method.
 - The `new` keyword creates a new instance of the class.
 - We can still add properties and methods to individual instances of the class.
+- We can determine the type of an object using the `instanceof` operator.
+
+```js
+console.log(triangle1 instanceof Triangle) // true
+```
