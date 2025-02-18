@@ -101,3 +101,5 @@ buddy.bark === max.bark // true
 ```
 
 In the example above, the _bark_ and _sleep_ methods are added to the _Dog_ constructor function's prototype. When a new object is created using the _Dog_ constructor function, the _bark_ and _sleep_ methods are shared among all instances created with the _Dog_ constructor function.
+
+Prototypes are the basic mechanism that gives JavaScript objects the ability to inherit from other objects.
