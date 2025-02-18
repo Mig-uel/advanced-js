@@ -32,3 +32,22 @@ const person = {
 
 const pFullName = person.fullName // does not work
 ```
+
+In the example above, _`this`_ refers to the _`person`_ object when used inside the _`fullName`_ method. However, when we assign the _`person.fullName`_ method to a variable, _`this`_ no longer refers to the _`person`_ object.
+
+To solve this issue, we can use the _`bind()`_ method to bind the _`this`_ value to the _`person`_ object.
+
+```javascript
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function () {
+    return `${this.firstName} ${this.lastName}`
+  },
+}
+
+const pFullName = person.fullName.bind(person)
+console.log(pFullName()) // John Doe
+```
+
+In the example above, we bind the _`this`_ value to the _`person`_ object using the _`bind()`_ method.
