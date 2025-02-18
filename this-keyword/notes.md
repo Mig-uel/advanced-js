@@ -258,3 +258,21 @@ janeSing() // Jane is singing LALA
 ```
 
 In the example above, we use the _`bind()`_ method to bind the _`sing`_ method to the _`jane`_ object.
+
+# Binding Arguments
+
+You can also bind arguments to a function.
+
+```javascript
+function applySalesTax(taxRate, price) {
+  return price + price * taxRate
+}
+
+const applyVAT = applySalesTax.bind(null, 0.2)
+console.log(applyVAT(100)) // 120
+```
+
+In the example above, we use the _`bind()`_ method to bind the _`taxRate`_ argument to the _`applySalesTax`_ function.
+
+- The first argument is the value of _`this`_. In this case, we don't need to bind _`this`_, so we pass _`null`_.
+- The second argument is the value of the _`taxRate`_ argument.
