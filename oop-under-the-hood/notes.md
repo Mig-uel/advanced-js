@@ -120,3 +120,34 @@ const max = new buddy.constructor('Max', 'Labrador') // { name: 'Max', breed: 'L
 ```
 
 In the example above, the _constructor_ property of the _buddy_ object points to the _Dog_ constructor function. We can use the _constructor_ property to create new objects using the same constructor function.
+
+## The Prototype Chain
+
+The prototype chain is a series of objects connected by their prototypes. When a method or property is called on an object, JavaScript will first look for that method or property on the object itself. If it doesn't find it, it will look for it on the object's prototype. If it doesn't find it there, it will look for it on the prototype's prototype, and so on, until it reaches the end of the prototype chain.
+
+```javascript
+const grandparent = {
+  greet() {
+    return 'Hello!'
+  },
+}
+
+const parent = {
+  color: 'red',
+  sing() {
+    return 'La la la...'
+  },
+  __proto__: grandparent,
+}
+
+const child = {
+  num: 2,
+  __proto__: parent,
+}
+
+child.color // 'red'
+child.sing() // 'La la la...'
+child.greet() // 'Hello!'
+```
+
+In the example above, the _child_ object has a prototype chain that includes the _parent_ and _grandparent_ objects. When a property or method is called on the _child_ object, JavaScript will first look for it on the _child_ object itself. If it doesn't find it, it will look for it on the _parent_ object. If it doesn't find it there, it will look for it on the _grandparent_ object.
