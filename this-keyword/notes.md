@@ -320,3 +320,4 @@ button.addEventListener('click', john.sing.bind(john))
 In the example above, we use the _`bind()`_ method to bind the _`sing`_ method to the _`john`_ object.
 
 - The _`bind()`_ method creates a new function that, when called, has its _`this`_ keyword set to the provided value.
+- The call method would not work in this case because the event listener is calling the function, not you.
