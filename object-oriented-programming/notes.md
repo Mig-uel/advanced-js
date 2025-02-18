@@ -252,3 +252,36 @@ class Cat {
 const cat1 = new Cat('Whiskers', 'Siamese')
 Cat.species // felis catus
 ```
+
+- Static properties are accessed using the class name, not the instance name.
+- Static properties are shared between all instances of the class.
+
+## Static Methods
+
+Static methods are methods that are called on the class itself, not on an instance of the class. They are defined on the class itself, not on the instances of the class.
+
+- Static methods are defined using the `static` keyword.
+- Static methods are called on the class itself, not on an instance of the class.
+- Static methods can access static properties of the class.
+
+```js
+class Cat {
+  constructor(name, breed) {
+    this.name = name
+    this.breed = breed
+  }
+
+  static meow() {
+    console.log(this)
+    return 'Meow!'
+  }
+}
+
+Cat.meow() // Meow!
+```
+
+- Static methods are called on the class itself, not on an instance of the class.
+- Static methods can access static properties of the class.
+- `this` inside a static method refers to the class itself, not an instance of the class.
+- Almost every other OOP language more properly calls these "class methods" not "static methods" - since it does have access to the class itself.
+- More consistent OOP languages like C++, Java, and Python, also have true static methods, where the method does not have access to the class itself.
