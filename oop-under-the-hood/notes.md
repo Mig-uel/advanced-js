@@ -216,3 +216,13 @@ buddy.speak() // 'Buddy makes a noise.'
 ```
 
 In the example above, the _Dog_ class extends the _Animal_ class. When the _Dog_ class is defined, JavaScript creates a constructor function for the _Dog_ class and sets the _Dog_ class's prototype to an instance of the _Animal_ class.
+
+## Conclusion
+
+- JavaScript did not always have classes. It was introduced in ES6 (ECMAScript 2015). Before ES6, JavaScript used prototype-based inheritance.
+- Prototype-based inheritance is a style of object-oriented programming in which classes are not present and behavior reuse (inheritance) is performed via a process of cloning existing objects that serve as prototypes.
+- In JavaScript, every object has a prototype. When a method or property is called on an object, JavaScript will first look for that method or property on the object itself. If it doesn't find it, it will look for it on the object's prototype. If it doesn't find it there, it will look for it on the prototype's prototype, and so on, until it reaches the end of the prototype chain.
+- Classes in JavaScript are syntactic sugar for prototype-based inheritance.
+- When a class is defined, JavaScript creates a constructor function and adds methods to the constructor function's prototype.
+- Classes can also extend other classes. When a class extends another class, JavaScript
+  creates a constructor function for the subclass and sets the subclass's prototype to an instance of the superclass.
