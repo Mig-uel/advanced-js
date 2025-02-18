@@ -347,6 +347,7 @@ circle1.radius = 10
 Public fields are properties that are defined outside of the constructor. They are defined using the `=` syntax.
 
 - Public fields are properties that are defined outside of the constructor.
+- Public fields are properties that are accessible from outside the class.
 - Public fields are defined using the `=` syntax.
 - Public fields are shared between all instances of the class.
 
@@ -371,3 +372,31 @@ Benefits of public fields:
 - Easier to read and write.
 - Less boilerplate code.
 - Shared between all instances of the class.
+
+## Private Fields
+
+Private fields are properties that are only accessible from inside the class. They are defined using the `#` syntax.
+
+- Private fields are properties that are only accessible from inside the class.
+- Private fields are defined using the `#` syntax.
+- Private fields are not accessible from outside the class.
+- Provides a way to encapsulate data and prevent it from being accessed from outside the class.
+
+```js
+class Circle {
+  #radius
+
+  constructor(radius) {
+    this.#radius = radius
+  }
+}
+
+const circle1 = new Circle(5)
+circle1.#radius // SyntaxError
+```
+
+Benefits of private fields:
+
+- Encapsulate data and prevent it from being accessed from outside the class.
+- Prevent accidental modification of data.
+- Improve code quality and maintainability.
