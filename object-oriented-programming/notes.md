@@ -405,3 +405,34 @@ Benefits of private fields:
 - Encapsulate data and prevent it from being accessed from outside the class.
 - Prevent accidental modification of data.
 - Improve code quality and maintainability.
+
+## Private Methods
+
+Private methods are methods that are only accessible from inside the class. They are defined using the `#` syntax.
+
+- Private methods are methods that are only accessible from inside the class.
+- Private methods are defined using the `#` syntax.
+- Private methods are not accessible from outside the class.
+- Provides a way to encapsulate functionality and prevent it from being accessed from outside the class.
+
+```js
+class MyClass {
+  #privateMethod() {
+    console.log('Private method')
+  }
+
+  publicMethod() {
+    this.#privateMethod()
+  }
+}
+
+const myClass = new MyClass()
+myClass.#privateMethod() // SyntaxError
+myClass.publicMethod() // Private method
+```
+
+Benefits of private methods:
+
+- Encapsulate functionality and prevent it from being accessed from outside the class.
+- Prevent accidental modification of data.
+- Improve code quality and maintainability.
