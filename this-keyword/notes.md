@@ -90,3 +90,33 @@ When you call a function on nothing, it is called on the global object.
 The global object depends on the environment. In the browser, it is _`window`_. In Node.js, it is _`global`_. In a web worker, it is _`self`_.
 
 The value of the keyword _`this`_ depends on the context in which it is used.
+
+# The "Left of the Dot" Rule
+
+The value of _`this`_ is determined by the object that is calling the function. If the function is called as a method of an object, _`this`_ is the object that the function is a property of.
+
+```javascript
+function whatIsThis() {
+  return this
+}
+
+whatIsThis() // window
+```
+
+The value of this will be equal to the whatever is left of the dot when the function is called.
+
+```javascript
+function whatIsThis() {
+  return this
+}
+
+const obj = {
+  color: 'red',
+  age: 42,
+  whatIsThis,
+}
+
+obj.whatIsThis() // obj: { color: 'red', age: 42, whatIsThis: [Function: whatIsThis] }
+```
+
+In the example above, _`this`_ is equal to _`obj`_ because _`obj`_ is left of the dot when the function is called.
