@@ -21,3 +21,15 @@ async function showNotification() {
 
 showNotification()
 ```
+
+We can listen for different events on the notification object:
+
+- `click`: Fired when the user clicks on the notification.
+- `close`: Fired when the user closes the notification.
+- `error`: Fired when the notification encounters an error.
+
+```js
+notification.addEventListener('click', () => {
+  console.log('Notification clicked!')
+})
+```
