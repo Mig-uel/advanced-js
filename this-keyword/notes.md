@@ -184,7 +184,7 @@ In the example above, we use the _`call()`_ method to call the _`dance`_ method 
 const john = {
   name: 'John',
   city: 'New York',
-  sing: function (song) {
+  sing: function () {
     console.log(`${this.name} is singing LALA`)
   },
 }
@@ -229,3 +229,31 @@ In the example above, we use the _`apply()`_ method to call the _`greet`_ method
 
 - apply takes an array of arguments. In this case, we pass an array with one element, 'Hello'.
 - Each element in the array will be passed as an argument to the function.
+
+# The Bind Method
+
+The _`bind()`_ method creates a new function that, when called, has its _`this`_ keyword set to the provided value.
+
+- The _`bind()`_ method returns a new function.
+- The new function has the _`this`_ value set to the value passed to the _`bind()`_ method.
+- It accepts arguments just like the original function.
+- You can 'perma-bind' a function to an context.
+
+```javascript
+const john = {
+  name: 'John',
+  city: 'New York',
+  sing: function () {
+    console.log(`${this.name} is singing LALA`)
+  },
+}
+
+const jane = {
+  name: 'Jane',
+  city: 'San Francisco',
+}
+
+const janeSing = john.sing.bind(jane)
+```
+
+In the example above, we use the _`bind()`_ method to bind the _`sing`_ method to the _`jane`_ object.
