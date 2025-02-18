@@ -184,3 +184,50 @@ const triangle1 = new Triangle(3, 4)
 triangle1.getArea() // 6
 triangle1.getHypotenuse() // 5
 ```
+
+## Class Inheritance
+
+Inheritance is a way to create a new class based on an existing class. The new class inherits the properties and methods of the existing class.
+
+- Inheritance is a way to create a new class based on an existing class.
+- The new class is called a subclass or child class.
+- The existing class is called a superclass or parent class.
+- The subclass inherits the properties and methods of the superclass.
+- The subclass can override the properties and methods of the superclass.
+
+```js
+class Shape {
+  constructor(color) {
+    this.color = color
+  }
+
+  getColor() {
+    return this.color
+  }
+}
+
+class Triangle extends Shape {
+  constructor(color, a, b) {
+    super(color)
+    this.a = a
+    this.b = b
+  }
+
+  getArea() {
+    return 0.5 * (this.a * this.b)
+  }
+
+  getHypotenuse() {
+    return Math.sqrt(this.a ** 2 + this.b ** 2)
+  }
+}
+
+const triangle1 = new Triangle('red', 3, 4)
+triangle1.getColor() // red
+triangle1.getArea() // 6
+triangle1.getHypotenuse() // 5
+```
+
+- The `super` keyword is used to call the constructor of the superclass.
+- The `super` keyword is used to call methods on the superclass.
+- The subclass can override the properties and methods of the superclass.
