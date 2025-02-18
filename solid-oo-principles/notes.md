@@ -95,3 +95,98 @@ if (user.authenticate('password')) {
 ```
 
 In the refactored code, each class has a single responsibility: `User` class handles user authentication, and `UserDataManager` class saves the user to the database. Each class has only one reason to change.
+
+### O - Open/Closed Principle (OCP)
+
+A class should be open for extension but closed for modification. This means that we should be able to add new functionality to a class without modifying its existing code.
+
+Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
+
+```js
+class AreaCalculator {
+  static calculate(shape) {
+    if (shape.type === 'circle') {
+      return Math.PI * shape.radius ** 2
+    } else if (shape.type === 'square') {
+      return shape.side ** 2
+    }
+  }
+
+  static calculateAreas(shapes) {
+    return shapes.reduce((prev, shape) => {
+      return prev + AreaCalculator.calculate(shape)
+    }, 0)
+  }
+}
+
+const circle = { type: 'circle', radius: 5 }
+const square = { type: 'square', side: 4 }
+```
+
+In the example above, the `AreaCalculator` class violates the OCP because we need to modify the class whenever we add a new shape type. We can refactor the class to follow the OCP:
+
+```js
+class Shape {
+  area() {
+    // override this method in subclasses
+    throw new Error('area method must be implemented')
+  }
+}
+
+class Circle extends Shape {
+  constructor(radius) {
+    super()
+    this.radius = radius
+  }
+
+  area() {
+    return Math.PI * this.radius ** 2
+  }
+}
+
+class Square extends Shape {
+  constructor(side) {
+    super()
+    this.side = side
+  }
+
+  area() {
+    return this.side ** 2
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(length, width) {
+    super()
+    this.length = length
+    this.width = width
+  }
+
+  area() {
+    return this.length * this.width
+  }
+}
+
+class AreaCalculator {
+  static calculate(shape) {
+    return shape.area()
+  }
+
+  static calculateAll(shapes) {
+    return shapes.reduce((prev, shape) => {
+      return prev + AreaCalculator.calculate(shape)
+    }, 0)
+  }
+}
+
+const circle = new Circle(5)
+const square = new Square(4)
+const rectangle = new Rectangle(3, 6)
+
+AreaCalculator.calculate(circle) // 78.54
+AreaCalculator.calculate(square) // 16
+AreaCalculator.calculate(rectangle) // 18
+AreaCalculator.calculateAll([circle, square, rectangle]) // 112.54
+```
+
+In the refactored code, the `AreaCalculator` class is open for extension because we can add new shape types by creating new subclasses of the `Shape` class. The `AreaCalculator` class is closed for modification because we don't need to modify its code when adding new shape types.
