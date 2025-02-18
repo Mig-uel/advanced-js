@@ -103,3 +103,20 @@ buddy.bark === max.bark // true
 In the example above, the _bark_ and _sleep_ methods are added to the _Dog_ constructor function's prototype. When a new object is created using the _Dog_ constructor function, the _bark_ and _sleep_ methods are shared among all instances created with the _Dog_ constructor function.
 
 Prototypes are the basic mechanism that gives JavaScript objects the ability to inherit from other objects.
+
+The constructor found in an object's prototype is the constructor that was used to create the object.
+
+```javascript
+function Dog(name, breed) {
+  this.name = name
+  this.breed = breed
+}
+
+const buddy = new Dog('Buddy', 'Golden Retriever') // { name: 'Buddy', breed: 'Golden Retriever' }
+
+buddy.constructor === Dog // true
+
+const max = new buddy.constructor('Max', 'Labrador') // { name: 'Max', breed: 'Labrador' }
+```
+
+In the example above, the _constructor_ property of the _buddy_ object points to the _Dog_ constructor function. We can use the _constructor_ property to create new objects using the same constructor function.
