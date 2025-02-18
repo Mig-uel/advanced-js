@@ -321,3 +321,53 @@ In the example above, we use the _`bind()`_ method to bind the _`sing`_ method t
 
 - The _`bind()`_ method creates a new function that, when called, has its _`this`_ keyword set to the provided value.
 - The call method would not work in this case because the event listener is calling the function, not you.
+
+# Bind and Timers
+
+The _`bind()`_ method is also used to bind timers to functions.
+
+```javascript
+class Counter {
+  constructor(startingNumber = 0, incrementAmount = 1) {
+    this.count = startingNumber
+    this.incrementAmount = incrementAmount
+  }
+
+  start() {
+    setInterval(function () {
+      console.log(this.count)
+      this.count += this.incrementAmount
+    }, 1000)
+  }
+}
+
+const counter = new Counter()
+counter.start() // NaN
+```
+
+In the example above, the _`this.count`_ and _`this.incrementAmount`_ properties are _`undefined`_ because _`this`_ is set to the global object, not the _`counter`_ object.
+
+To fix this issue, you can use the _`bind()`_ method.
+
+```javascript
+class Counter {
+  constructor(startingNumber = 0, incrementAmount = 1) {
+    this.count = startingNumber
+    this.incrementAmount = incrementAmount
+  }
+
+  start() {
+    setInterval(this.incrementAndLog.bind(this), 1000)
+  }
+
+  incrementAndLog() {
+    console.log(this.count)
+    this.count += this.incrementAmount
+  }
+}
+
+const counter = new Counter()
+counter.start() // 0, 1, 2, 3, 4, ...
+```
+
+In the example above, we use the _`bind()`_ method to bind the _`incrementAndLog`_ method to the _`counter`_ object.
