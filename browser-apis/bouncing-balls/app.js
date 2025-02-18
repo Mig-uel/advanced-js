@@ -35,6 +35,15 @@ class Ball {
 
   /** Update ball coords */
   update() {
+    // Check if it's about to hit the canvas boundary
+    if (this.x + this.size >= canvas.width || this.x - this.size <= 0) {
+      this.x_velocity = -this.x_velocity
+    }
+
+    if (this.y + this.size >= canvas.height || this.y - this.size <= 0) {
+      this.y_velocity = -this.y_velocity
+    }
+
     this.x += this.x_velocity
     this.y += this.y_velocity
   }
