@@ -146,3 +146,36 @@ fSpeak() // TypeError: Cannot read property 'name' of undefined
 In this example, when we assign the _`cat.speak`_ method to a variable, _`this`_ no longer refers to the _`cat`_ object but to _undefined_.
 When you call a function on nothing, but the function comes from inside a class, _`this`_ will be _undefined_, not the global object.
 _`this`_ loses its context when you assign a method to a variable.
+
+# The Call Method
+
+The _`call()`_ method calls a function with a given _`this`_ value and arguments provided individually. Sometimes, you'll need to say "call this function on this object".
+
+- The first argument is the value of _`this`_.
+- The rest of the arguments are the arguments that you want to pass to the function.
+
+```javascript
+class Cat {
+  constructor(firstName) {
+    this.firstName = firstName
+  }
+
+  dance(style = 'salsa') {
+    console.log(`${this.firstName} is dancing ${style}`)
+  }
+}
+
+const cat = new Cat('Tom')
+cat.dance() // Tom is dancing salsa
+
+// assign the dance method to a variable
+const fDance = cat.dance
+
+const kitty = new Cat('Kitty')
+fDance.call(kitty, 'tango') // Kitty is dancing tango
+```
+
+In the example above, we use the _`call()`_ method to call the _`dance`_ method on the _`kitty`_ object.
+
+- The first argument is the value of _`this`_.
+- The second argument is the argument that you want to pass to the function.
