@@ -402,3 +402,17 @@ cat.superGreet() // I am Tom, I am undefined, I am Tom
 ```
 
 In the example above, the _`setTimeout`_ function creates its own _`this`_, which is set to the global object. To fix this issue, you can use an arrow function.
+
+# Conclusion
+
+- _`this`_ is a keyword in JavaScript that refers to the object it belongs to.
+- _`this`_ has different values depending on where it is used.
+- _`this`_ value is determined only at the point of invocation.
+- In a method, _`this`_ refers to the owner object.
+- Alone, _`this`_ refers to the global object.
+- In a function, _`this`_ refers to the global object.
+- In a function, in strict mode, _`this`_ is _`undefined`_.
+- In an event, _`this`_ refers to the element that received the event.
+- Methods like _`call()`_, and _`apply()`_ can refer _`this`_ to any object.
+- The _`bind()`_ method creates a new function that, when called, has its _`this`_ keyword set to the provided value.
+- Arrow functions do not have their own _`this`_. They inherit _`this`_ from the surrounding code.
