@@ -320,3 +320,64 @@ bernie.swim() // Bernie is swimming!
 ```
 
 In this example, the `fly` and `swim` mixins provide methods for flying, landing, and swimming. The `Animal` class has a `greet` method and is extended with the `fly` and `swim` mixins to add flying and swimming capabilities to the `Animal` object.
+
+## Proxy Pattern With Proxy Objects
+
+The Proxy Pattern is a design pattern that allows you to create a placeholder (proxy) for another object. The proxy object controls access to the real object and can add additional behavior or restrictions.
+
+- It provides a way to control access to an object and add additional functionality without modifying the object itself.
+- It is useful for implementing lazy loading, access control, logging, caching, and other cross-cutting concerns.
+- Proxy means 'in place of', representing the real object. It acts as an intermediary between the client and the real object.
+- Instead of directly interacting with the real object, the client interacts with the proxy object, which can perform additional operations before or after forwarding the request to the real object.
+
+```js
+const cat = {
+  name: 'Whiskers',
+  age: 3,
+  breed: 'Tuxedo',
+}
+
+// new Proxy(object, handler) // Proxy constructor
+
+const catProxy = new Proxy(cat, {})
+
+// we can access the properties of the real object through the proxy
+console.log(catProxy.name) // Whiskers
+console.log(catProxy.age) // 3
+console.log(catProxy.breed) // Tuxedo
+
+// we can also set properties on the real object through the proxy
+catProxy.age = 4
+console.log(cat.age) // 4
+
+// we can use the proxy to govern and control access to the real object:
+// we pass through a handler object to the Proxy constructor
+// the handler object contains traps (methods) that intercept operations on the proxy object
+// we can define traps for operations like get, set, deleteProperty, apply, etc.
+const handler = {
+  get(obj, property) {
+    console.log(`Getting property: ${property} from object:`, obj)
+    return obj[property]
+  },
+
+  set(obj, property, value) {
+    if (property === 'age' && value < obj.age) {
+      console.log('Age cannot be decreased')
+      return
+    } else {
+      console.log(`Setting property: ${property} to: ${value}`)
+      obj[property] = value
+      return
+    }
+  },
+}
+const anotherCatProxy = new Proxy(cat, handler)
+
+console.log(anotherCatProxy.name) // Getting property: name from object: { name: 'Whiskers', age: 4, breed: 'Tuxedo' } // Whiskers
+```
+
+In this example, we create a `cat` object and a `catProxy` object using the `Proxy` constructor. The `catProxy` object acts as a proxy for the `cat` object, allowing us to access and modify the properties of the `cat` object through the proxy. We define a `handler` object with traps for the `get` and `set` operations to intercept and control access to the `cat` object.
+
+- The `get` trap intercepts property access on the proxy object and logs the property being accessed before returning the value from the real object.
+- The `set` trap intercepts property assignment on the proxy object and checks if the property is `age` and the new value is less than the current value. If the condition is met, it logs a message and prevents the property from being set.
+- The `handler` object is passed to the `Proxy` constructor to define the behavior of the proxy object.
