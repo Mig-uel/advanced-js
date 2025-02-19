@@ -381,3 +381,33 @@ In this example, we create a `cat` object and a `catProxy` object using the `Pro
 - The `get` trap intercepts property access on the proxy object and logs the property being accessed before returning the value from the real object.
 - The `set` trap intercepts property assignment on the proxy object and checks if the property is `age` and the new value is less than the current value. If the condition is met, it logs a message and prevents the property from being set.
 - The `handler` object is passed to the `Proxy` constructor to define the behavior of the proxy object.
+
+Another example of the Proxy Pattern:
+
+```js
+function multiply(a, b) {
+  console.log(a * b)
+}
+
+function sum(a, b) {
+  console.log(a + b)
+}
+
+const handler = {
+  // apply trap runs when the function is called
+  apply(targetFunc, thisArg, argsList) {
+    console.log('Function called')
+
+    // call the target function with the arguments
+    return targetFunc(...argsList)
+  },
+}
+
+const multiplyProxy = new Proxy(multiply, handler)
+console.log(multiplyProxy(2, 3)) // Function called // 6
+
+const sumProxy = new Proxy(sum, handler)
+console.log(sumProxy(2, 3)) // Function called // 5
+```
+
+In this example, we create two functions `multiply` and `sum` and a `handler` object with an `apply` trap. We create proxy objects `multiplyProxy` and `sumProxy` using the `Proxy` constructor with the `handler` object. When we call the proxy functions, the `apply` trap intercepts the function call and logs a message before calling the target function with the arguments.
