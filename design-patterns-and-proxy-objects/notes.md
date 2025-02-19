@@ -267,3 +267,10 @@ console.log(farm.getAllChickens()) // [Chicken { id: 1, name: 'Henrietta', age: 
 ```
 
 In this example, the `Chicken` class represents a chicken object with properties like ID, name, age, and breed. The `ChickenRegistry` class acts as a centralized registry for managing chickens. It uses a `Map` to store chickens by their ID and provides methods to add, get, remove, and retrieve all chickens.
+
+## Real-World Examples of the Registry Pattern
+
+1. **Service Locator Pattern**: The Registry Pattern is used in the Service Locator Pattern to provide a centralized registry for services in an application. Clients can access services through the service locator without knowing the concrete implementation.
+2. **Dependency Injection Containers**: Dependency injection containers use the Registry Pattern to manage dependencies and provide instances of objects to clients. Clients can request objects from the container without creating them directly.
+3. **Global State Management**: The Registry Pattern can be used to manage global state in an application. Objects and resources can be stored in a centralized registry and accessed by different parts of the application.
+4. **Configuration Settings**: The Registry Pattern can be used to store and manage configuration settings in an application. Settings can be stored in a registry and accessed by different components as needed.
