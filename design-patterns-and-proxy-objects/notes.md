@@ -100,3 +100,99 @@ console.log(db1 === db2) // true
 ```
 
 In this example, the `DatabaseConnection` class uses a static property `instance` to store the singleton instance. The constructor checks if the instance already exists and creates it if it doesn't. The `createConnection` method is used to create the database connection.
+
+## Observer Pattern
+
+The Observer Pattern is a design pattern in which an object (known as the subject) maintains a list of its dependents (observers) and notifies them of any state changes, usually by calling one of their methods.
+
+- It enables a subscription model where objects (observers) "listen" to events or changes and are notified when they occur.
+- It is useful for implementing event handling systems, pub/sub systems, and reactive programming.
+
+```js
+class Subject {
+  constructor() {
+    this.observers = []
+  }
+
+  subscribe(fn) {
+    this.observers.push(fn)
+  }
+
+  unsubscribe(fn) {
+    this.observers = this.observers.filter((observer) => observer !== fn)
+  }
+
+  notify(data) {
+    this.observers.forEach((observer) => observer(data))
+  }
+}
+
+const observer1 = (data) => console.log(`Observer 1 received: ${data}`)
+const observer2 = (data) => console.log(`Observer 2 received: ${data}`)
+
+const subject = new Subject()
+
+subject.subscribe(observer1)
+subject.subscribe(observer2)
+
+subject.notify('Hello, observers!')
+// Observer 1 received: Hello, observers!
+// Observer 2 received: Hello, observers!
+
+subject.unsubscribe(observer1)
+```
+
+- The Observer Pattern allows for a one-to-many relationship between the subject and observers, where the subject can notify multiple observers of changes.
+- Observers can subscribe to and unsubscribe from the subject, allowing for dynamic changes in the list of observers.
+
+Another example of the Observer Pattern using the module pattern:
+
+```js
+class Blog {
+  constructor() {
+    this.subscribers = []
+  }
+
+  subscribe(subscriber) {
+    this.subscribers.push(subscriber)
+  }
+
+  unsubscribe(subscriber) {
+    this.subscribers = this.subscribers.filter((s) => s !== subscriber)
+  }
+
+  publish(post) {
+    this.subscribers.forEach((subscriber) => subscriber.notify(post))
+  }
+}
+
+class Subscriber {
+  constructor(name) {
+    this.name = name
+  }
+
+  notify(post) {
+    console.log(
+      `${this.name} received notification: New post published - ${post.title}`
+    )
+  }
+}
+
+const john = new Subscriber('John')
+const jane = new Subscriber('Jane')
+
+const blog = new Blog()
+blog.subscribe(john)
+blog.subscribe(jane)
+
+blog.publish({ title: 'Hello, World!', content: 'This is my first post.' })
+// John received notification: New post published - Hello, World!
+// Jane received notification: New post published - Hello, World!
+
+blog.unsubscribe(jane)
+
+blog.publish({ title: 'Goodbye, World!', content: 'This is my last post.' })
+// John received notification: New post published - Goodbye, World!
+```
+
+In this example, the `Blog` class acts as the subject, and the `Subscriber` class acts as the observer. The `Blog` class maintains a list of subscribers and notifies them when a new post is published.
