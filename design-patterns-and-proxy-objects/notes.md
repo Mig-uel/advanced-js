@@ -274,3 +274,49 @@ In this example, the `Chicken` class represents a chicken object with properties
 2. **Dependency Injection Containers**: Dependency injection containers use the Registry Pattern to manage dependencies and provide instances of objects to clients. Clients can request objects from the container without creating them directly.
 3. **Global State Management**: The Registry Pattern can be used to manage global state in an application. Objects and resources can be stored in a centralized registry and accessed by different parts of the application.
 4. **Configuration Settings**: The Registry Pattern can be used to store and manage configuration settings in an application. Settings can be stored in a registry and accessed by different components as needed.
+
+## Mixin Pattern
+
+The Mixin Pattern is a design pattern that allows objects to inherit methods and properties from multiple sources. It is used to extend the functionality of objects by combining multiple mixins into a single object.
+
+- It enables objects to inherit methods and properties from multiple sources, providing a way to compose objects with different behaviors.
+- It is useful for creating reusable and composable components that can be combined to create complex objects.
+
+```js
+const fly = {
+  fly() {
+    console.log(`${this.name} is flying!`)
+  },
+  land() {
+    console.log(`${this.name} is landing!`)
+  },
+}
+
+const swim = {
+  swim() {
+    console.log(`${this.name} is swimming!`)
+  },
+}
+
+class Animal {
+  constructor(name, species) {
+    this.name = name
+    this.species = species
+  }
+
+  greet() {
+    console.log(`${this.name} says hello!`)
+  }
+}
+
+const bernie = new Animal('Bernie', 'Pelican')
+Object.assign(bernie, fly) // Mixin fly methods
+Object.assign(bernie, swim) // Mixin swim methods
+
+bernie.greet() // Bernie says hello!
+bernie.fly() // Bernie is flying!
+bernie.land() // Bernie is landing!
+bernie.swim() // Bernie is swimming!
+```
+
+In this example, the `fly` and `swim` mixins provide methods for flying, landing, and swimming. The `Animal` class has a `greet` method and is extended with the `fly` and `swim` mixins to add flying and swimming capabilities to the `Animal` object.
