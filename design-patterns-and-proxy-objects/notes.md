@@ -462,3 +462,5 @@ function updateUI(prop, value) {
 dataProxy.name = 'Jane Doe' // Setting property: name to: Jane Doe
 dataProxy.age = 35 // Setting property: age to: 35
 ```
+
+In this example, we create a `data` object with properties `name` and `age`. We define a `handler` object with `get` and `set` traps to intercept property access and updates on the proxy object. When a property is accessed or modified on the proxy object, the `get` and `set` traps log messages and update the UI to reflect the changes in the data model.
